@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto — Arquitecta en Marbella | NMarcilla Arquitecta</title>
+  <meta name="description" content="Contacta con Nuria Marcilla, arquitecta en Marbella. Primera consulta gratuita. Diseño, reforma, certificado energético y catastro en la Costa del Sol." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nmarcillaarquitecta.com/contacto/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>
+    document.documentElement.classList.add('js', 'anim-pending');
+    window.__nmAnimFallback = window.setTimeout(function () {
+      document.documentElement.classList.remove('anim-pending');
+    }, 2600);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- CONTACT LAYOUT ---- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 0;
+      min-height: calc(100vh - var(--nav-h) - 420px);
+    }
+
+    /* Left panel */
+    .contact-left {
+      background: var(--blue-dark);
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-left::before {
+      content: '';
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(47,108,156,0.25);
+      pointer-events: none;
+    }
+    .contact-left::after {
+      content: '';
+      position: absolute;
+      left: -40px; bottom: 40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.1);
+      pointer-events: none;
+    }
+    .contact-left-header { position: relative; z-index: 1; }
+    .contact-left-header .section-eyebrow { color: var(--gold); }
+    .contact-left-header .section-eyebrow::before { background: var(--gold); }
+    .contact-left-header .section-title { color: var(--white); font-size: clamp(1.8rem,3vw,2.8rem); }
+    .contact-left-header .section-title em { color: var(--gold-light); }
+    .contact-left-header p { color: rgba(255,255,255,0.55); font-size: 0.92rem; line-height: 1.75; margin-top: 16px; }
+
+    .contact-details { display: flex; flex-direction: column; gap: 28px; position: relative; z-index: 1; }
+    .contact-detail-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-detail-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .contact-detail-item:hover .contact-detail-icon { background: rgba(184,150,90,0.2); }
+    .contact-detail-icon svg { width: 20px; height: 20px; color: var(--gold); }
+    .contact-detail-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 5px; }
+    .contact-detail-value { font-size: 0.97rem; color: var(--white); font-weight: 500; line-height: 1.3; }
+    .contact-detail-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
+
+    .contact-schedule { position: relative; z-index: 1; }
+    .contact-schedule h4 { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+    .schedule-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-day { color: rgba(255,255,255,0.6); }
+    .schedule-hours { color: var(--white); font-weight: 500; }
+    .schedule-closed { color: rgba(255,255,255,0.25); font-style: italic; }
+
+    .contact-socials { display: flex; gap: 12px; position: relative; z-index: 1; }
+    .contact-social {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.75rem; font-weight: 600;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .contact-social:hover { border-color: var(--gold); color: var(--gold); background: rgba(184,150,90,0.1); }
+
+    /* Right panel — form */
+    .contact-right {
+      background: var(--white);
+      padding: 80px 70px;
+    }
+    .contact-right h2 { font-family: var(--font-serif); font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 300; color: var(--dark); margin-bottom: 8px; }
+    .contact-right h2 strong { color: var(--blue); }
+    .contact-right p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 36px; line-height: 1.7; }
+    .form-full { grid-column: span 2; }
+
+    /* Service pills */
+    .service-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .service-pill {
+      padding: 8px 18px;
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 30px;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: var(--font-sans);
+      background: transparent;
+    }
+    .service-pill:hover { border-color: var(--blue); color: var(--blue); }
+    .service-pill.selected { border-color: var(--blue); background: var(--blue); color: var(--white); }
+    .pill-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
+
+    /* Budget range */
+    .budget-range { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+    .budget-opt {
+      padding: 10px 8px;
+      border: 1.5px solid var(--beige-dark);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      text-align: center;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: var(--font-sans);
+      background: transparent;
+    }
+    .budget-opt:hover { border-color: var(--blue); color: var(--blue); }
+    .budget-opt.selected { border-color: var(--blue); background: var(--blue-pale); color: var(--blue); font-weight: 500; }
+
+    .form-privacy { font-size: 0.75rem; color: var(--text-light); line-height: 1.6; }
+    .form-privacy a { color: var(--blue); text-decoration: none; }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+      gap: 20px;
+    }
+    .form-success.show { display: flex; }
+    .success-icon {
+      width: 80px; height: 80px;
+      background: var(--blue-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .success-icon svg { width: 36px; height: 36px; color: var(--blue); }
+
+    /* Map placeholder */
+    .map-section { background: var(--beige); }
+    .map-placeholder {
+      height: 380px;
+      background: linear-gradient(135deg, var(--blue-pale) 0%, var(--beige-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(47,108,156,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47,108,156,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .map-pin-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .map-pin {
+      width: 56px; height: 56px;
+      background: var(--blue);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(47,108,156,0.35);
+      animation: pinBounce 2s ease-in-out infinite;
+    }
+    .map-pin svg { transform: rotate(45deg); width: 22px; height: 22px; color: white; }
+    @keyframes pinBounce {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(-8px); }
+    }
+    .map-label {
+      background: var(--white);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: var(--dark);
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    @media(max-width:1000px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-left { padding: 60px 40px; }
+      .contact-right { padding: 60px 40px; }
+      .budget-range { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:600px) {
+      .contact-left, .contact-right { padding: 50px 24px; }
+      .budget-range { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+  <div id="scroll-progress"></div>
+
+  <nav id="navbar" class="inner-nav">
+    <a href="index.html" class="nav-logo">NMarcilla<span>Arquitecta</span></a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html" class="nav-cta" style="background:var(--blue-dark)">Contactar</a></li>
+    </ul>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contactar</a>
+  </div>
+
+  <!-- Page Hero compacto -->
+  <div class="page-hero" style="margin-top:var(--nav-h);height:320px">
+    <div class="page-hero-copy">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> · Contacto</div>
+      <h1 class="page-hero-title">Hablemos de tu <em>proyecto</em></h1>
+      <div class="page-hero-meta annotation-mark">
+        <span class="annotation-mark-line"></span>
+        <span>Respuesta &lt; 48h / Consulta inicial</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact layout -->
+  <div class="contact-layout">
+    <!-- LEFT -->
+    <div class="contact-left">
+      <div class="contact-left-header reveal-left">
+        <div class="section-eyebrow">Estamos aquí</div>
+        <h2 class="section-title">Primera consulta<br><em>completamente</em><br>gratuita</h2>
+        <p>Sin compromiso ni letra pequeña. Cuéntame tu idea y te respondo en menos de 48 horas con una orientación personalizada.</p>
+      </div>
+
+      <div class="contact-details reveal-left delay-2">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .99h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Teléfono</div>
+            <div class="contact-detail-value"><a href="tel:+34666665727" style="color:inherit;text-decoration:none;">+34 666 665 727</a></div>
+            <div class="contact-detail-sub">WhatsApp disponible</div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value"><a href="mailto:info@nmarcillaarquitecta.com" style="color:inherit;text-decoration:none;">info@nmarcillaarquitecta.com</a></div>
+            <div class="contact-detail-sub">Respuesta en &lt; 48 horas</div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Estudio</div>
+            <div class="contact-detail-value">Marbella, Málaga</div>
+            <div class="contact-detail-sub">Costa del Sol · Andalucía</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-schedule reveal-left delay-3">
+        <h4>Horario de atención</h4>
+        <div class="schedule-row">
+          <span class="schedule-day">Lunes – Viernes</span>
+          <span class="schedule-hours">9:00 – 18:00</span>
+        </div>
+        <div class="schedule-row">
+          <span class="schedule-day">Sábados</span>
+          <span class="schedule-hours">10:00 – 14:00</span>
+        </div>
+        <div class="schedule-row">
+          <span class="schedule-day">Domingos</span>
+          <span class="schedule-closed">Cerrado</span>
+        </div>
+      </div>
+
+      <div class="contact-socials reveal-left delay-4">
+        <a href="#" class="contact-social" title="Instagram">in</a>
+        <a href="#" class="contact-social" title="LinkedIn">li</a>
+        <a href="#" class="contact-social" title="Houzz">h</a>
+        <a href="#" class="contact-social" title="Pinterest">p</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form -->
+    <div class="contact-right">
+      <div id="form-wrapper">
+        <h2 class="reveal">Cuéntame tu <strong>proyecto</strong></h2>
+        <p class="reveal delay-1">Rellena el formulario y me pongo en contacto contigo en menos de 48 horas para una primera consulta gratuita.</p>
+
+        <form class="contact-form" id="main-form" data-success-screen="true">
+          <div class="form-row reveal delay-2">
+            <div class="form-group">
+              <label for="c-nombre">Nombre *</label>
+              <input type="text" id="c-nombre" name="nombre" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email *</label>
+              <input type="email" id="c-email" name="email" placeholder="tu@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-row reveal delay-2">
+            <div class="form-group">
+              <label for="c-tel">Teléfono</label>
+              <input type="tel" id="c-tel" name="telefono" placeholder="+34 600 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="c-loc">Municipio / Zona</label>
+              <input type="text" id="c-loc" name="ubicacion" placeholder="Marbella, Estepona…" />
+            </div>
+          </div>
+
+          <div class="form-group reveal delay-3">
+            <div class="pill-label">Servicio de interés</div>
+            <div class="service-pills">
+              <button type="button" class="service-pill" data-val="diseno">Diseño arquitectónico</button>
+              <button type="button" class="service-pill" data-val="reforma">Reforma / Rehabilitación</button>
+              <button type="button" class="service-pill" data-val="certificado">Certificado energético</button>
+              <button type="button" class="service-pill" data-val="catastro">Coordinación catastral</button>
+              <button type="button" class="service-pill" data-val="otro">Otro / Consulta</button>
+            </div>
+          </div>
+
+          <div class="form-group reveal delay-3">
+            <div class="pill-label">Presupuesto aproximado</div>
+            <div class="budget-range">
+              <button type="button" class="budget-opt" data-val="<30k">&lt; 30.000€</button>
+              <button type="button" class="budget-opt" data-val="30-80k">30.000 – 80.000€</button>
+              <button type="button" class="budget-opt" data-val="80-200k">80.000 – 200.000€</button>
+              <button type="button" class="budget-opt" data-val=">200k">&gt; 200.000€</button>
+            </div>
+          </div>
+
+          <div class="form-group reveal delay-4">
+            <label for="c-msg">Descripción del proyecto *</label>
+            <textarea id="c-msg" name="mensaje" rows="4" placeholder="Cuéntame brevemente tu proyecto: tipo de espacio, qué quieres conseguir, ubicación aproximada…" required></textarea>
+          </div>
+
+          <div class="form-group reveal delay-4">
+            <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">
+              <input type="checkbox" name="privacidad" required style="margin-top:3px;accent-color:var(--blue)" />
+              <span class="form-privacy">He leído y acepto la <a href="#">Política de Privacidad</a>. Entiendo que mis datos serán tratados para gestionar mi consulta y no serán cedidos a terceros.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-submit btn-email-fill reveal delay-5">
+            <span>Enviar consulta gratuita</span>
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success message -->
+      <div class="form-success" id="form-success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 style="font-family:var(--font-serif);font-size:1.8rem;color:var(--dark);font-weight:300">¡Mensaje enviado!</h3>
+        <p style="color:var(--text-light);font-size:0.92rem;max-width:350px;text-align:center;line-height:1.7">Gracias por tu consulta. Me pondré en contacto contigo en menos de 48 horas para hablar de tu proyecto.</p>
+        <a href="index.html" class="btn-primary" style="display:inline-flex;margin-top:16px">
+          <span>Volver al inicio</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map placeholder -->
+  <div class="map-section">
+    <div class="container" style="padding:60px">
+      <div class="map-placeholder" style="border-radius:6px">
+        <div class="map-pin-wrap">
+          <div class="map-pin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="map-label">NMarcilla Arquitecta · Marbella, Málaga</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">NMarcilla <span>Arquitecta</span></a>
+          <p>Arquitecta en Marbella y la Costa del Sol. Transformamos ideas en espacios que inspiran.</p>
+          <div class="footer-socials" style="margin-top:24px">
+            <a href="#" class="footer-social">in</a>
+            <a href="#" class="footer-social">li</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="servicios.html#diseno">Diseño Arquitectónico</a></li>
+            <li><a href="servicios.html#rehabilitacion">Rehabilitación</a></li>
+            <li><a href="servicios.html#certificado">Certificado Energético</a></li>
+            <li><a href="servicios.html#catastro">Coordinación Catastral</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Zona de actuación</h4>
+          <ul>
+            <li><a href="#">Marbella</a></li>
+            <li><a href="#">Estepona</a></li>
+            <li><a href="#">Puerto Banús</a></li>
+            <li><a href="#">Costa del Sol</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NMarcilla Arquitecta · Todos los derechos reservados</span>
+        <div style="display:flex;gap:24px"><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Service pills
+    document.querySelectorAll('.service-pill').forEach(pill => {
+      pill.addEventListener('click', () => pill.classList.toggle('selected'));
+    });
+    // Budget options
+    document.querySelectorAll('.budget-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.budget-opt').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+      });
+    });
+    // Form submit
+    document.getElementById('main-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.innerHTML = '<span>Enviando…</span>';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('form-success').classList.add('show');
+      }, 1400);
+    });
+  </script>
+</body>
+</html>

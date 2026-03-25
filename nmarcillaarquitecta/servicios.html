@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios — Arquitecta en Marbella | NMarcilla Arquitecta</title>
+  <meta name="description" content="Diseño arquitectónico, rehabilitación, certificado energético y coordinación catastral en Marbella y la Costa del Sol. Consulta gratuita." />
+  <meta name="keywords" content="servicios arquitectura Marbella, reforma vivienda Marbella, certificado energético Costa del Sol, catastro Marbella, diseño arquitectónico Marbella" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nmarcillaarquitecta.com/servicios/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Arquitectura y Diseño",
+    "provider": {
+      "@type": "Person",
+      "name": "Nuria Marcilla",
+      "jobTitle": "Arquitecta"
+    },
+    "areaServed": "Marbella, Costa del Sol, Andalucía",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Arquitectura",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diseño Arquitectónico"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Rehabilitación"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Certificado Energético"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coordinación Catastral"}}
+      ]
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta un certificado energético en Marbella?",
+        "acceptedAnswer": {"@type": "Answer", "text": "El precio de un certificado energético en Marbella depende del tamaño del inmueble y su tipología. Contáctanos para recibir un presupuesto personalizado sin compromiso."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es obligatorio el certificado energético para vender una vivienda en Marbella?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Sí, desde 2013 es obligatorio disponer del certificado de eficiencia energética para poder vender o alquilar cualquier inmueble en España, según el Real Decreto 235/2013."}
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye la coordinación catastral?",
+        "acceptedAnswer": {"@type": "Answer", "text": "La coordinación catastral incluye la comprobación de descriptiva y gráfica del inmueble, la georreferenciación de la parcela, la coordinación con topógrafo si es necesario, y la tramitación ante la Junta de Andalucía."}
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>
+    document.documentElement.classList.add('js', 'anim-pending');
+    window.__nmAnimFallback = window.setTimeout(function () {
+      document.documentElement.classList.remove('anim-pending');
+    }, 2600);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .service-detail {
+      display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+      padding:var(--section-pad) 0; border-bottom:1px solid var(--beige-dark);
+    }
+    .service-detail:last-of-type { border-bottom:none; }
+    .service-detail.reverse { direction:rtl; }
+    .service-detail.reverse > * { direction:ltr; }
+    .service-visual {
+      aspect-ratio:4/3; border-radius:4px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .service-detail-num {
+      font-family:var(--font-serif); font-size:5rem; font-weight:300;
+      color:var(--blue-pale); line-height:1; margin-bottom:4px;
+    }
+    .service-detail-content { display:flex; flex-direction:column; gap:20px; }
+    .service-detail-title { font-family:var(--font-serif); font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; color:var(--dark); }
+    .service-detail-text { font-size:0.95rem; color:var(--text-light); line-height:1.8; }
+    .service-includes { display:flex; flex-direction:column; gap:12px; margin-top:4px; }
+    .include-item { display:flex; gap:12px; align-items:flex-start; font-size:0.88rem; color:var(--text); }
+    .include-item::before { content:''; width:18px; height:18px; background:var(--blue-pale); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F6C9C' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size:11px; background-position:center; background-repeat:no-repeat; margin-top:1px; }
+    .service-cta-tag { display:inline-block; padding:8px 16px; background:var(--blue-pale); color:var(--blue); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; border-radius:2px; font-weight:500; }
+
+    .faq-section { background:var(--beige); }
+    .faq-list { display:flex; flex-direction:column; gap:0; margin-top:60px; }
+    .faq-item { border-bottom:1px solid var(--beige-dark); }
+    .faq-question {
+      padding:24px 0; cursor:pointer; display:flex; justify-content:space-between;
+      align-items:center; gap:20px; font-family:var(--font-serif); font-size:1.15rem;
+      color:var(--dark); transition:color 0.3s;
+    }
+    .faq-question:hover { color:var(--blue); }
+    .faq-icon { width:24px; height:24px; border:1px solid var(--beige-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.3s, border-color 0.3s, transform 0.3s; }
+    .faq-icon svg { width:12px; height:12px; color:var(--text-light); transition:color 0.3s; }
+    .faq-item.open .faq-icon { background:var(--blue); border-color:var(--blue); transform:rotate(45deg); }
+    .faq-item.open .faq-icon svg { color:var(--white); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.5s ease, padding 0.3s; }
+    .faq-answer-inner { padding:0 0 24px; font-size:0.92rem; color:var(--text-light); line-height:1.75; max-width:720px; }
+    .faq-item.open .faq-answer { max-height:300px; }
+
+    @media(max-width:900px) {
+      .service-detail { grid-template-columns:1fr; gap:40px; }
+      .service-detail.reverse { direction:ltr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+  <div id="scroll-progress"></div>
+
+  <nav id="navbar" class="inner-nav">
+    <a href="index.html" class="nav-logo">NMarcilla<span>Arquitecta</span></a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html" style="color:var(--blue)">Servicios</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contactar</a></li>
+    </ul>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contactar</a>
+  </div>
+
+  <div class="page-hero" style="margin-top:var(--nav-h)">
+    <div class="page-hero-copy">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> · Servicios</div>
+      <h1 class="page-hero-title">Nuestros <em>Servicios</em></h1>
+      <div class="page-hero-meta annotation-mark">
+        <span class="annotation-mark-line"></span>
+        <span>12 especialidades / Costa del Sol</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Servicios detallados -->
+  <section style="background:var(--white)">
+    <div class="container" style="padding-top:var(--section-pad)">
+      <div class="section-eyebrow reveal" style="justify-content:center">Todo lo que necesitas</div>
+      <h2 class="section-title reveal delay-1" style="text-align:center">12 servicios especializados,<br><strong>una sola arquitecta</strong></h2>
+      <p class="section-subtitle reveal delay-2" style="text-align:center;margin:16px auto 70px">Desde el diseño de tu hogar hasta la tramitación de licencias y tasaciones, cubrimos todas las necesidades técnicas y arquitectónicas.</p>
+    </div>
+
+    <div class="container">
+
+      <!-- 1. Arquitectura y diseño -->
+      <div class="service-detail" id="diseno">
+        <div class="service-visual reveal-left" style="background:linear-gradient(135deg,#1A3A52,#2F6C9C)">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" opacity="0.2">
+            <polygon points="60,10 110,40 110,100 10,100 10,40" stroke="white" stroke-width="2" fill="none"/>
+            <line x1="10" y1="60" x2="110" y2="60" stroke="white" stroke-width="1"/>
+            <rect x="40" y="65" width="40" height="35" stroke="white" stroke-width="1.5" fill="none"/>
+            <rect x="48" y="35" width="24" height="25" stroke="white" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="service-detail-content reveal-right">
+          <div class="service-detail-num">01</div>
+          <div class="service-cta-tag">Residencial · Comercial</div>
+          <h2 class="service-detail-title">Arquitectura y Diseño</h2>
+          <p class="service-detail-text">Te ayudo a dar forma a esa idea que tienes en la cabeza, aplicando toda la experiencia para dotarla de funcionalidad, eficiencia energética y estilo. La mezcla de arquitectura tradicional andaluza en el exterior con espacios modernos en el interior forma una fusión maravillosa. Las líneas puras enmarcan grandes ventanales para disfrutar de las vistas al Mediterráneo.</p>
+          <div class="service-includes">
+            <div class="include-item">Anteproyecto con renders 3D y memoria descriptiva</div>
+            <div class="include-item">Proyecto básico y de ejecución completo</div>
+            <div class="include-item">Gestión de licencias y permisos municipales</div>
+            <div class="include-item">Dirección de obra y coordinación de industriales</div>
+            <div class="include-item">Certificación final y entrega de llaves</div>
+          </div>
+          <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+            <span>Solicitar presupuesto</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Rehabilitación -->
+      <div class="service-detail reverse" id="rehabilitacion">
+        <div class="service-visual reveal-right" style="background:linear-gradient(135deg,#B8965A,#245580)">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" opacity="0.2">
+            <rect x="15" y="30" width="90" height="80" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M15 50 Q60 30 105 50" stroke="white" stroke-width="1.5" fill="none"/>
+            <rect x="35" y="70" width="50" height="40" stroke="white" stroke-width="1.5" fill="none"/>
+            <line x1="60" y1="70" x2="60" y2="110" stroke="white" stroke-width="1"/>
+            <circle cx="25" cy="25" r="10" stroke="white" stroke-width="1.5" fill="none"/>
+            <line x1="31" y1="19" x2="37" y2="13" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="service-detail-content reveal-left">
+          <div class="service-detail-num">02</div>
+          <div class="service-cta-tag">Viviendas · Locales</div>
+          <h2 class="service-detail-title">Rehabilitaciones y Reformas</h2>
+          <p class="service-detail-text">Hay muchas viviendas y locales de cierta antigüedad que necesitan ser renovados. Puedo acometer una rehabilitación integral o simplemente reformar las estancias más deterioradas, o que se han quedado antiguas, y darles un aire moderno.</p>
+          <div class="service-includes">
+            <div class="include-item">Estudio patológico y propuesta de intervención</div>
+            <div class="include-item">Reforma integral o parcial según necesidades</div>
+            <div class="include-item">Mejora de eficiencia energética incluida</div>
+            <div class="include-item">Modernización de instalaciones</div>
+            <div class="include-item">Coordinación completa con constructoras</div>
+          </div>
+          <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+            <span>Solicitar presupuesto</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Certificado -->
+      <div class="service-detail" id="certificado">
+        <div class="service-visual reveal-left" style="background:linear-gradient(135deg,#2F6C9C,#1A3A52)">
+          <svg width="100" height="130" viewBox="0 0 100 130" fill="none" opacity="0.2">
+            <rect x="10" y="10" width="80" height="110" rx="4" stroke="white" stroke-width="2" fill="none"/>
+            <line x1="25" y1="35" x2="75" y2="35" stroke="white" stroke-width="1.5"/>
+            <line x1="25" y1="50" x2="75" y2="50" stroke="white" stroke-width="1"/>
+            <line x1="25" y1="65" x2="60" y2="65" stroke="white" stroke-width="1"/>
+            <circle cx="50" cy="95" r="18" stroke="white" stroke-width="1.5" fill="none"/>
+            <polyline points="42,95 48,101 60,88" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="service-detail-content reveal-right">
+          <div class="service-detail-num">03</div>
+          <div class="service-cta-tag">R.D. 235/2013 · Obligatorio</div>
+          <h2 class="service-detail-title">Certificación Energética</h2>
+          <p class="service-detail-text">El certificado energético es un documento que refleja la demanda energética de un inmueble en condiciones de ocupación. Es obligatorio a la hora de inscribir una vivienda según el Real Decreto 235/2013. Te ayudo con los trámites, obtengo la Etiqueta Energética y realizo el registro en la Junta de Andalucía.</p>
+          <div class="service-includes">
+            <div class="include-item">Visita técnica al inmueble (Málaga y provincia)</div>
+            <div class="include-item">Certificado según R.D. 235/2013</div>
+            <div class="include-item">Etiqueta energética con calificación oficial</div>
+            <div class="include-item">Registro en la Junta de Andalucía incluido</div>
+            <div class="include-item">Entrega en 48-72 horas hábiles</div>
+          </div>
+          <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+            <span>Pedir certificado</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Catastro -->
+      <div class="service-detail reverse" id="catastro">
+        <div class="service-visual reveal-right" style="background:linear-gradient(135deg,#1C1C1C,#2F6C9C)">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" opacity="0.2">
+            <rect x="10" y="10" width="100" height="100" stroke="white" stroke-width="1.5" fill="none"/>
+            <line x1="10" y1="50" x2="110" y2="50" stroke="white" stroke-width="1"/>
+            <line x1="10" y1="75" x2="110" y2="75" stroke="white" stroke-width="1"/>
+            <line x1="45" y1="10" x2="45" y2="110" stroke="white" stroke-width="1"/>
+            <line x1="80" y1="10" x2="80" y2="110" stroke="white" stroke-width="1"/>
+            <rect x="15" y="15" width="25" height="30" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.05)"/>
+            <rect x="50" y="55" width="25" height="15" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.05)"/>
+          </svg>
+        </div>
+        <div class="service-detail-content reveal-left">
+          <div class="service-detail-num">04</div>
+          <div class="service-cta-tag">Ley 13/2015 · Escrituración</div>
+          <h2 class="service-detail-title">Coordinación y Alteración Catastral</h2>
+          <p class="service-detail-text">La coordinación de la información entre registro y Catastro resulta indispensable. La Ley 13/2015 obliga a que todos los inmuebles que se vayan a escriturar estén coordinados con Catastro. Te pongo en contacto con topógrafos de confianza con quienes llevo trabajando muchos años, y te presupuestan sin compromiso.</p>
+          <div class="service-includes">
+            <div class="include-item">Comprobación de descriptiva y gráfica registral</div>
+            <div class="include-item">Georreferenciación de parcelas y edificios</div>
+            <div class="include-item">Coordinación con topógrafo si se requiere</div>
+            <div class="include-item">Tramitación ante el Registro de la Propiedad</div>
+            <div class="include-item">Subsanación de discrepancias catastrales</div>
+          </div>
+          <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+            <span>Consultar caso</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tasaciones (5th service, full-width) -->
+    <div class="container" style="padding-top:0;padding-bottom:0">
+      <div class="service-detail" id="tasaciones" style="border-top:1px solid var(--beige-dark);padding-top:var(--section-pad)">
+        <div class="service-visual reveal-left" style="background:linear-gradient(135deg,#1C1C1C,#2F6C9C)">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" opacity="0.2">
+            <rect x="10" y="20" width="90" height="75" stroke="white" stroke-width="1.5" fill="none" rx="2"/>
+            <line x1="10" y1="38" x2="100" y2="38" stroke="white" stroke-width="1"/>
+            <rect x="42" y="48" width="20" height="25" stroke="white" stroke-width="1.2" fill="none"/>
+            <rect x="68" y="55" width="20" height="18" stroke="white" stroke-width="1.2" fill="none"/>
+            <rect x="16" y="42" width="15" height="30" stroke="white" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+        <div class="service-detail-content reveal-right">
+          <div class="service-detail-num">05</div>
+          <div class="service-cta-tag">Hipotecaria · Herencias · Hacienda</div>
+          <h2 class="service-detail-title">Tasaciones</h2>
+          <p class="service-detail-text">Llevo más de 20 años haciendo tasaciones para distintos fines, fundamentalmente para garantía hipotecaria, pero también contradictorias para hacienda o temas de herencia y valor de mercado. Para cualquier tipo de inmueble: viviendas, locales, oficinas, naves industriales y fincas rústicas. Presupuesto sin compromiso.</p>
+          <div class="service-includes">
+            <div class="include-item">Tasación para garantía hipotecaria</div>
+            <div class="include-item">Valoración para herencias y hacienda</div>
+            <div class="include-item">Valor de mercado para compraventa</div>
+            <div class="include-item">Viviendas, locales, oficinas, naves y fincas rústicas</div>
+            <div class="include-item">Presupuesto ajustado según ubicación, superficie y antigüedad</div>
+          </div>
+          <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+            <span>Solicitar tasación</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicios adicionales en grid -->
+    <div style="background:var(--beige);margin-top:60px;padding:var(--section-pad) 0">
+      <div class="container">
+        <div class="section-eyebrow reveal" style="justify-content:center">Servicios adicionales</div>
+        <h2 class="section-title reveal delay-1" style="text-align:center;margin-bottom:50px">Todo lo que necesitas,<br><em>resuelto en un solo lugar</em></h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;">
+          <div class="service-card reveal delay-1" id="antiguedad">
+            <div class="service-card-num">06</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <h3 class="service-card-title">Certificados de Antigüedad</h3>
+            <p class="service-card-text">Cada vez es más habitual encontrar viviendas no inscritas o ampliaciones sin registrar que generan problemas en herencias o ventas. El Certificado de Antigüedad recoge la superficie, datos de inicio de la obra y las Coordenadas Georreferenciadas requeridas.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-2" id="peritaciones">
+            <div class="service-card-num">07</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3 class="service-card-title">Peritaciones</h3>
+            <p class="service-card-text">Soluciones precisas y expertas para resolver cuestiones técnicas y legales. Confía en mi experiencia para evaluar y ofrecer análisis especializados en cada proyecto arquitectónico o constructivo.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-3" id="humedades">
+            <div class="service-card-num">08</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+            <h3 class="service-card-title">Informe de Humedades</h3>
+            <p class="service-card-text">Evaluaciones precisas y soluciones para abordar problemas de humedad en edificaciones. Análisis integral para resolver eficientemente las preocupaciones relacionadas con la humedad antes de que se conviertan en un problema mayor.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-1" id="licencia-apertura">
+            <div class="service-card-num">09</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <h3 class="service-card-title">Licencia de Apertura de Locales</h3>
+            <p class="service-card-text">Asesoramiento completo en la gestión de permisos de apertura. Simplifico el proceso legal y aseguro la apertura exitosa de tu establecimiento comercial con toda la documentación técnica necesaria.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-2" id="vados">
+            <div class="service-card-num">10</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <h3 class="service-card-title">Vados para Coches</h3>
+            <p class="service-card-text">Gestión ágil en la obtención de autorizaciones de vado ante el Ayuntamiento. Optimiza el acceso y la movilidad vehicular en tu propiedad con mi ayuda para todos los trámites necesarios.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-3" id="apartamento-turistico">
+            <div class="service-card-num">11</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h3 class="service-card-title">Licencia de Apartamento Turístico</h3>
+            <p class="service-card-text">Gestión integral para obtener las autorizaciones necesarias y convertir tu propiedad en un destino turístico legal. Simplifico el proceso burocrático con asesoramiento especializado en la normativa andaluza.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="service-card reveal delay-1" id="ite">
+            <div class="service-card-num">12</div>
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3 class="service-card-title">ITE — Inspección Técnica de Edificios</h3>
+            <p class="service-card-text">La Inspección Técnica de Edificios ha entrado de lleno en la labor profesional en los últimos años. Se trata de hacer un examen técnico a aquellos edificios de cierta antigüedad para garantizar su seguridad estructural.</p>
+            <a href="contacto.html" class="service-card-link">Consultar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-eyebrow reveal">Preguntas frecuentes</div>
+      <h2 class="section-title reveal delay-1">Todo lo que necesitas <strong>saber</strong></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            ¿Es obligatorio el certificado energético para vender en Marbella?
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Sí, desde 2013 es obligatorio disponer del certificado de eficiencia energética para poder vender o alquilar cualquier inmueble en España. Sin él, el notario no puede autorizar la escritura de compraventa o el contrato de arrendamiento. Las multas por incumplimiento pueden llegar a 6.000 €.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            ¿Cuánto tarda en obtenerse el certificado energético?
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">El proceso habitual es: visita técnica al inmueble (entre 30 y 90 minutos según el tamaño), redacción del informe (24-48 h) y registro en la Junta de Andalucía (24-48 h adicionales). En total, en condiciones normales, en menos de una semana tienes tu certificado registrado y válido.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            ¿Necesito licencia para reformar mi piso en Marbella?
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Depende del tipo de reforma. Las obras menores (pintura, alicatado, pequeñas reparaciones) suelen requerir solo comunicación previa. Las obras mayores que afecten a estructura, distribución o fachada necesitan licencia de obras mayor. En ambos casos, te asesoramos sobre qué necesitas en cada caso concreto.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            ¿Qué incluye el servicio de coordinación catastral?
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Incluye la revisión de la información catastral del inmueble, comprobación de que la descripción gráfica y alfanumérica coincide con la realidad, georreferenciación si es necesaria, coordinación con topógrafo acreditado y tramitación de toda la documentación ante el Registro de la Propiedad y el Catastro.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            ¿Ofrecéis servicio en toda la Costa del Sol?
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Sí. Aunque nuestra base está en Marbella, trabajamos en toda la provincia de Málaga: Estepona, Benalmádena, Fuengirola, Nerja, Ronda, y por supuesto toda la Costa del Sol. Para proyectos fuera de este ámbito, consúltanos y lo valoramos sin compromiso.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--blue-dark);padding:80px 0;text-align:center">
+    <div class="container">
+      <h2 class="section-title reveal" style="color:var(--white)">Primera consulta <em>gratuita</em></h2>
+      <p class="section-subtitle reveal delay-1" style="color:rgba(255,255,255,0.6);margin:16px auto 40px;text-align:center">Sin compromiso. Cuéntame tu proyecto y te oriento.</p>
+      <div class="reveal delay-2">
+        <a href="contacto.html" class="btn-primary" style="display:inline-flex">
+          <span>Contactar ahora</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">NMarcilla <span>Arquitecta</span></a>
+          <p>Arquitecta en Marbella y la Costa del Sol.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#diseno">Diseño Arquitectónico</a></li>
+            <li><a href="#rehabilitacion">Rehabilitación</a></li>
+            <li><a href="#certificado">Certificado Energético</a></li>
+            <li><a href="#catastro">Coordinación Catastral</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Zona de actuación</h4>
+          <ul>
+            <li><a href="#">Marbella</a></li>
+            <li><a href="#">Estepona</a></li>
+            <li><a href="#">Costa del Sol</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NMarcilla Arquitecta · Todos los derechos reservados</span>
+        <div style="display:flex;gap:24px"><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

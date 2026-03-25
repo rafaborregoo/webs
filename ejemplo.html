@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elena Morán — Arquitecta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F0E8;
+    --ink: #1A1714;
+    --red: #C1392B;
+    --warm-gray: #9A9085;
+    --line: rgba(26,23,20,0.15);
+    --rule: rgba(26,23,20,0.08);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 6px; height: 6px;
+    background: var(--ink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width .2s, height .2s, background .2s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all .15s ease;
+    opacity: .5;
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; background: var(--red); }
+  body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { opacity: 0; }
+
+  /* BLUEPRINT GRID BACKGROUND */
+  .blueprint-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* ===== LOADER ===== */
+  #loader {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .loader-line {
+    width: 0; height: 1px;
+    background: var(--paper);
+    animation: drawLine 1.8s ease forwards;
+  }
+  @keyframes drawLine {
+    to { width: 240px; }
+  }
+  .loader-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--paper);
+    letter-spacing: .3em;
+    opacity: 0;
+    animation: fadeIn .6s ease 1.2s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 28px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .25em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color .2s;
+    text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ===== SECTIONS ===== */
+  section { position: relative; z-index: 1; }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated floor plan drawing */
+  .floor-plan {
+    position: absolute;
+    right: 0; top: 0;
+    width: 55%;
+    height: 100%;
+    opacity: .12;
+  }
+  .floor-plan svg {
+    width: 100%; height: 100%;
+  }
+  .draw-line {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: draw 4s ease 2s forwards;
+  }
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .hero-left {
+    padding-bottom: 0;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .3em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: slideUp .8s ease 2s forwards;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-name {
+    font-size: clamp(72px, 8vw, 120px);
+    font-weight: 300;
+    line-height: .9;
+    letter-spacing: -.02em;
+    opacity: 0;
+    animation: slideUp .8s ease 2.2s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    display: block;
+  }
+  .hero-role {
+    margin-top: 32px;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-gray);
+    letter-spacing: .05em;
+    opacity: 0;
+    animation: slideUp .8s ease 2.4s forwards;
+  }
+
+  /* Measurement annotation */
+  .hero-annotation {
+    position: absolute;
+    bottom: 120px; right: 48px;
+    display: flex; align-items: center; gap: 12px;
+    opacity: 0;
+    animation: fadeIn .6s ease 3s forwards;
+  }
+  .annotation-line {
+    width: 60px; height: 1px;
+    background: var(--warm-gray);
+    position: relative;
+  }
+  .annotation-line::before, .annotation-line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 1px; height: 7px;
+    background: var(--warm-gray);
+  }
+  .annotation-line::before { left: 0; }
+  .annotation-line::after { right: 0; }
+  .annotation-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--warm-gray);
+    letter-spacing: .2em;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    left: 48px; bottom: 48px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    opacity: 0;
+    animation: fadeIn .6s ease 3.2s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -60px; left: 0;
+    width: 1px; height: 60px;
+    background: var(--red);
+    animation: scrollDown 1.8s ease-in-out infinite 3.5s;
+  }
+  @keyframes scrollDown {
+    to { top: 120px; }
+  }
+  .scroll-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: var(--warm-gray);
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+  }
+
+  /* ===== STATEMENT ===== */
+  #statement {
+    padding: 120px 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: .3em;
+    margin-bottom: 48px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-number::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--line);
+  }
+  .statement-text {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+  }
+  .statement-text em { font-style: italic; color: var(--warm-gray); }
+  .statement-aside {
+    margin-top: 48px;
+    padding-left: 32px;
+    border-left: 1px solid var(--line);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--warm-gray);
+    line-height: 1.8;
+  }
+
+  /* ===== PROYECTOS ===== */
+  #proyectos {
+    padding: 80px 0 160px;
+  }
+  .projects-header {
+    padding: 0 48px 64px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .projects-header h2 {
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 300;
+    letter-spacing: -.02em;
+  }
+  .projects-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--warm-gray);
+    letter-spacing: .2em;
+  }
+
+  /* Horizontal scroll de proyectos */
+  .projects-track {
+    display: flex;
+    gap: 2px;
+    padding: 0 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: ew-resize;
+  }
+  .projects-track::-webkit-scrollbar { display: none; }
+
+  .project-card {
+    flex: 0 0 380px;
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--paper);
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform .6s cubic-bezier(.76,0,.24,1);
+    z-index: 1;
+  }
+  .project-card:hover::before { transform: scaleX(0); }
+
+  .project-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-visual svg {
+    width: 70%; height: 70%;
+    opacity: .15;
+    transition: opacity .6s;
+  }
+  .project-card:hover .project-visual svg { opacity: .4; }
+
+  .project-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px;
+    z-index: 2;
+    color: var(--paper);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all .4s ease .2s;
+  }
+  .project-card:hover .project-info { transform: translateY(0); opacity: 1; }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .3em;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .project-title {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .project-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,240,232,.5);
+    letter-spacing: .15em;
+  }
+
+  /* Cover label (visible before hover) */
+  .project-cover-label {
+    position: absolute;
+    bottom: 32px; left: 32px;
+    z-index: 2;
+    transition: opacity .3s;
+  }
+  .project-card:hover .project-cover-label { opacity: 0; }
+  .project-cover-label .project-number { color: var(--red); }
+  .project-cover-label .project-title { color: var(--ink); font-size: 20px; }
+
+  /* ===== PROCESO ===== */
+  #proceso {
+    padding: 120px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: start;
+  }
+  .proceso-left h2 {
+    font-size: clamp(40px, 4vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 48px;
+  }
+  .proceso-left p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--warm-gray);
+    margin-bottom: 24px;
+  }
+
+  .phases {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .phase {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 48px 1fr 80px;
+    gap: 24px;
+    align-items: center;
+    transition: all .2s;
+    cursor: default;
+  }
+  .phase:hover { padding-left: 12px; }
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: .2em;
+  }
+  .phase-name {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .phase-dur {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--warm-gray);
+    letter-spacing: .15em;
+    text-align: right;
+  }
+  .phase:last-child { border-bottom: 1px solid var(--line); }
+
+  /* Axonometric building animation */
+  .axo-container {
+    position: relative;
+    height: 480px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .axo-svg {
+    width: 100%;
+    max-width: 400px;
+  }
+  .axo-face {
+    transform-origin: center;
+    animation: buildUp .8s ease both;
+  }
+  .axo-face-1 { animation-delay: .2s; }
+  .axo-face-2 { animation-delay: .4s; }
+  .axo-face-3 { animation-delay: .6s; }
+  .axo-detail { animation-delay: .9s; }
+  @keyframes buildUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .axo-dimension {
+    position: absolute;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: .15em;
+  }
+  .axo-dim-1 { bottom: 80px; left: 20px; }
+  .axo-dim-2 { bottom: 40px; right: 30px; }
+
+  /* ===== ABOUT ===== */
+  #about {
+    padding: 120px 48px;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  #about::before {
+    content: 'EM';
+    position: absolute;
+    font-size: 400px;
+    font-weight: 300;
+    color: rgba(245,240,232,.03);
+    right: -40px; bottom: -80px;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -.05em;
+  }
+  .about-photo {
+    position: relative;
+  }
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #2A2522;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Sketched portrait effect */
+  .photo-sketch {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-sketch svg {
+    width: 60%; height: 60%;
+    opacity: .3;
+  }
+  .photo-caption {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(245,240,232,.3);
+    letter-spacing: .2em;
+    text-align: center;
+  }
+
+  .about-content { padding-top: 40px; }
+  .about-content .section-number { color: rgba(245,240,232,.2); }
+  .about-content .section-number::after { background: rgba(245,240,232,.1); }
+  .about-content h2 {
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    color: var(--paper);
+    line-height: 1.2;
+    margin-bottom: 32px;
+    letter-spacing: -.01em;
+  }
+  .about-content p {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,240,232,.6);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .about-stats {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,240,232,.1);
+  }
+  .stat {
+    background: var(--ink);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--paper);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(245,240,232,.3);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+
+  /* ===== CONTACT ===== */
+  #contacto {
+    padding: 160px 48px 120px;
+    text-align: center;
+    position: relative;
+  }
+  .contact-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .3em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: block;
+  }
+  .contact-heading {
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    letter-spacing: -.03em;
+    line-height: .95;
+    margin-bottom: 60px;
+  }
+  .contact-heading em { font-style: italic; }
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    letter-spacing: .1em;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 20px 40px;
+    border: 1px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+    transition: color .4s;
+  }
+  .contact-email::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--ink);
+    transform: translateX(-101%);
+    transition: transform .4s cubic-bezier(.76,0,.24,1);
+  }
+  .contact-email:hover { color: var(--paper); }
+  .contact-email:hover::before { transform: translateX(0); }
+  .contact-email span { position: relative; z-index: 1; }
+  .contact-arrow { position: relative; z-index: 1; transition: transform .3s; }
+  .contact-email:hover .contact-arrow { transform: translateX(8px); }
+
+  /* Location tag */
+  .contact-location {
+    margin-top: 60px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+  }
+  .contact-location::before, .contact-location::after {
+    content: ''; flex: 0 0 60px; height: 1px; background: var(--line);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+    letter-spacing: .15em;
+  }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--warm-gray);
+    text-decoration: none;
+    letter-spacing: .15em;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .floor-plan { width: 100%; opacity: .06; }
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    #proceso { grid-template-columns: 1fr; padding: 80px 24px; gap: 60px; }
+    #about { grid-template-columns: 1fr; padding: 80px 24px; }
+    #contacto { padding: 100px 24px 80px; }
+    footer { padding: 24px; flex-direction: column; gap: 16px; }
+    .projects-track { padding: 0 24px; }
+    .project-card { flex: 0 0 300px; height: 420px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="blueprint-bg"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-line"></div>
+  <div class="loader-text">CARGANDO PORTAFOLIO</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">EM<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#about">Estudio</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Floor plan drawing -->
+  <div class="floor-plan">
+    <svg viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Plano de planta animado -->
+      <rect class="draw-line" x="80" y="100" width="400" height="500" stroke="#1A1714" stroke-width="2"/>
+      <line class="draw-line" x1="80" y1="300" x2="480" y2="300" stroke="#1A1714" stroke-width="1"/>
+      <line class="draw-line" x1="280" y1="100" x2="280" y2="600" stroke="#1A1714" stroke-width="1"/>
+      <rect class="draw-line" x="120" y="140" width="120" height="120" stroke="#1A1714" stroke-width="1" stroke-dasharray="4 4"/>
+      <rect class="draw-line" x="280" y="140" width="160" height="80" stroke="#1A1714" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle class="draw-line" cx="180" cy="340" r="60" stroke="#1A1714" stroke-width="1"/>
+      <line class="draw-line" x1="200" y1="100" x2="200" y2="80" stroke="#C1392B" stroke-width="1"/>
+      <line class="draw-line" x1="80" y1="80" x2="280" y2="80" stroke="#C1392B" stroke-width="0.5"/>
+      <text x="180" y="74" fill="#C1392B" font-family="monospace" font-size="10" text-anchor="middle">12.50 m</text>
+      <line class="draw-line" x1="500" y1="100" x2="520" y2="100" stroke="#C1392B" stroke-width="1"/>
+      <line class="draw-line" x1="520" y1="100" x2="520" y2="600" stroke="#C1392B" stroke-width="0.5"/>
+      <text x="530" y="350" fill="#C1392B" font-family="monospace" font-size="10" text-anchor="start">8.00 m</text>
+      <!-- Windows -->
+      <line class="draw-line" x1="140" y1="100" x2="160" y2="100" stroke="#1A1714" stroke-width="3"/>
+      <line class="draw-line" x1="320" y1="100" x2="360" y2="100" stroke="#1A1714" stroke-width="3"/>
+      <line class="draw-line" x1="80" y1="200" x2="80" y2="240" stroke="#1A1714" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Arquitecta · Madrid · España</div>
+    <h1 class="hero-name">
+      Elena<br>
+      <em>Morán</em>
+    </h1>
+    <p class="hero-role">Espacio. Luz. Memoria.</p>
+  </div>
+
+  <div class="hero-annotation">
+    <div class="annotation-line"></div>
+    <span class="annotation-text">PLANTA BAJA — ESC. 1:100</span>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section id="statement">
+  <div class="section-number reveal">001 — MANIFIESTO</div>
+  <p class="statement-text reveal reveal-delay-1">
+    La arquitectura no construye paredes.<br>
+    Construye <em>conversaciones entre el ser humano</em><br>
+    y el espacio que habita.
+  </p>
+  <div class="statement-aside reveal reveal-delay-2">
+    Fundado en 2014 · Barcelona → Madrid<br>
+    Residencial · Patrimonio · Rehabilitación<br>
+    Premio FAD 2021 · Premio COAM 2023
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="projects-header reveal">
+    <h2>Proyectos</h2>
+    <span class="projects-count">006 obras</span>
+  </div>
+
+  <div class="projects-track" id="projectsTrack">
+    <!-- Proyecto 1 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="80" width="120" height="100" stroke="white" stroke-width="1.5"/>
+          <rect x="60" y="40" width="80" height="60" stroke="white" stroke-width="1.5"/>
+          <rect x="80" y="10" width="40" height="40" stroke="white" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="180" stroke="white" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <rect x="50" y="100" width="20" height="30" stroke="white" stroke-width="1"/>
+          <rect x="130" y="100" width="20" height="30" stroke="white" stroke-width="1"/>
+          <rect x="85" y="130" width="30" height="50" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">001</div>
+        <div class="project-title">Casa Olmeda</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">001 — RESIDENCIAL</div>
+        <div class="project-title">Casa<br>Olmeda</div>
+        <div class="project-meta">TOLEDO · 2023 · 340 m²</div>
+      </div>
+    </div>
+
+    <!-- Proyecto 2 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" stroke="white" stroke-width="1.5"/>
+          <circle cx="100" cy="100" r="50" stroke="white" stroke-width="1"/>
+          <circle cx="100" cy="100" r="20" stroke="white" stroke-width="1"/>
+          <line x1="20" y1="100" x2="180" y2="100" stroke="white" stroke-width="0.5"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="white" stroke-width="0.5"/>
+          <path d="M 100 20 A 80 80 0 0 1 180 100" stroke="white" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">002</div>
+        <div class="project-title">Pabellón Circular</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">002 — EQUIPAMIENTO</div>
+        <div class="project-title">Pabellón<br>Circular</div>
+        <div class="project-meta">MADRID · 2022 · 1.200 m²</div>
+      </div>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 40 160 L 40 60 L 100 20 L 160 60 L 160 160 Z" stroke="white" stroke-width="1.5"/>
+          <path d="M 40 60 L 160 60" stroke="white" stroke-width="0.5"/>
+          <path d="M 40 100 L 160 100" stroke="white" stroke-width="0.5"/>
+          <path d="M 40 130 L 160 130" stroke="white" stroke-width="0.5"/>
+          <rect x="80" y="120" width="40" height="40" stroke="white" stroke-width="1"/>
+          <rect x="55" y="70" width="25" height="20" stroke="white" stroke-width="1"/>
+          <rect x="120" y="70" width="25" height="20" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">003</div>
+        <div class="project-title">Rehabilitación Lavapiés</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">003 — REHABILITACIÓN</div>
+        <div class="project-title">Lavapiés<br>XII</div>
+        <div class="project-meta">MADRID · 2021 · 680 m²</div>
+      </div>
+    </div>
+
+    <!-- Proyecto 4 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="80" width="160" height="100" stroke="white" stroke-width="1.5"/>
+          <path d="M 20 80 L 100 20 L 180 80" stroke="white" stroke-width="1.5"/>
+          <line x1="20" y1="80" x2="20" y2="180" stroke="white" stroke-width="1.5"/>
+          <line x1="180" y1="80" x2="180" y2="180" stroke="white" stroke-width="1.5"/>
+          <line x1="20" y1="180" x2="180" y2="180" stroke="white" stroke-width="1.5"/>
+          <!-- Alzado lateral axonométrico -->
+          <path d="M 180 80 L 200 60 L 200 160 L 180 180" stroke="white" stroke-width="1" stroke-dasharray="3 3"/>
+          <path d="M 100 20 L 120 0 L 200 60 L 180 80" stroke="white" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">004</div>
+        <div class="project-title">Villa Serra</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">004 — RESIDENCIAL</div>
+        <div class="project-title">Villa<br>Serra</div>
+        <div class="project-meta">BARCELONA · 2020 · 520 m²</div>
+      </div>
+    </div>
+
+    <!-- Proyecto 5 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="30" width="60" height="140" stroke="white" stroke-width="1.5"/>
+          <rect x="110" y="70" width="60" height="100" stroke="white" stroke-width="1.5"/>
+          <rect x="30" y="30" width="60" height="20" stroke="white" stroke-width="1" fill="white" fill-opacity="0.1"/>
+          <rect x="110" y="70" width="60" height="20" stroke="white" stroke-width="1" fill="white" fill-opacity="0.1"/>
+          <line x1="90" y1="100" x2="110" y2="100" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+          <line x1="30" y1="170" x2="170" y2="170" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">005</div>
+        <div class="project-title">Torres Gemelas</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">005 — CONCURSO</div>
+        <div class="project-title">Torres<br>Gemelas</div>
+        <div class="project-meta">BILBAO · 2019 · 4.800 m²</div>
+      </div>
+    </div>
+
+    <!-- Proyecto 6 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 100 10 L 190 55 L 190 145 L 100 190 L 10 145 L 10 55 Z" stroke="white" stroke-width="1.5"/>
+          <path d="M 100 40 L 165 75 L 165 125 L 100 160 L 35 125 L 35 75 Z" stroke="white" stroke-width="1"/>
+          <circle cx="100" cy="100" r="20" stroke="white" stroke-width="1.5"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="0.5" stroke-dasharray="4 4"/>
+        </svg>
+      </div>
+      <div class="project-cover-label">
+        <div class="project-number">006</div>
+        <div class="project-title">Museo Hexágono</div>
+      </div>
+      <div class="project-info">
+        <div class="project-number">006 — CULTURAL</div>
+        <div class="project-title">Museo<br>Hexágono</div>
+        <div class="project-meta">SEVILLA · 2018 · 2.100 m²</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="proceso-left reveal">
+    <div class="section-number">002 — MÉTODO</div>
+    <h2>El proceso<br><em>como obra</em></h2>
+    <p>Cada proyecto es una conversación larga. Empezamos escuchando.</p>
+    <p>Del boceto al detalle constructivo, cada fase tiene su propio ritmo y su propia lógica.</p>
+  </div>
+
+  <div class="proceso-right">
+    <!-- Axonometric building -->
+    <div class="axo-container reveal">
+      <svg class="axo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Isometric house -->
+        <!-- Base floor -->
+        <path class="axo-face axo-face-1" d="M 200 240 L 300 190 L 300 290 L 200 340 Z" fill="#E8E3DB" stroke="#1A1714" stroke-width="1.5"/>
+        <!-- Left wall -->
+        <path class="axo-face axo-face-2" d="M 100 190 L 200 240 L 200 340 L 100 290 Z" fill="#D4CFC8" stroke="#1A1714" stroke-width="1.5"/>
+        <!-- Roof face front -->
+        <path class="axo-face axo-face-3" d="M 100 190 L 200 140 L 300 190 L 200 240 Z" fill="#F0EDE8" stroke="#1A1714" stroke-width="1.5"/>
+        <!-- Roof peak line -->
+        <line class="axo-detail" x1="200" y1="100" x2="200" y2="140" stroke="#1A1714" stroke-width="1.5"/>
+        <path class="axo-detail" d="M 100 150 L 200 100 L 300 150" stroke="#1A1714" stroke-width="1.5" fill="none"/>
+        <!-- Top back roof -->
+        <path class="axo-detail" d="M 200 100 L 300 150 L 300 190 L 200 140 Z" fill="#E0DDD8" stroke="#1A1714" stroke-width="1"/>
+        <!-- Window right wall -->
+        <rect class="axo-detail" x="230" y="210" width="30" height="24" fill="#9A9085" stroke="#1A1714" stroke-width="1"/>
+        <!-- Window left wall -->
+        <rect class="axo-detail" x="120" y="210" width="25" height="22" fill="#9A9085" stroke="#1A1714" stroke-width="1"/>
+        <!-- Door -->
+        <path class="axo-detail" d="M 188 290 L 188 320 L 212 320 L 212 290" stroke="#1A1714" stroke-width="1.5" fill="#1A1714" fill-opacity="0.1"/>
+
+        <!-- Ground shadow -->
+        <ellipse cx="200" cy="345" rx="110" ry="16" fill="rgba(26,23,20,0.06)"/>
+
+        <!-- Dimension lines -->
+        <line x1="80" y1="190" x2="80" y2="290" stroke="#C1392B" stroke-width="0.8"/>
+        <line x1="76" y1="190" x2="84" y2="190" stroke="#C1392B" stroke-width="0.8"/>
+        <line x1="76" y1="290" x2="84" y2="290" stroke="#C1392B" stroke-width="0.8"/>
+
+        <line x1="100" y1="320" x2="300" y2="320" stroke="#C1392B" stroke-width="0.8"/>
+        <line x1="100" y1="316" x2="100" y2="324" stroke="#C1392B" stroke-width="0.8"/>
+        <line x1="300" y1="316" x2="300" y2="324" stroke="#C1392B" stroke-width="0.8"/>
+      </svg>
+      <span class="axo-dimension axo-dim-1">H: 4.50 m</span>
+      <span class="axo-dimension axo-dim-2">L: 12.00 m</span>
+    </div>
+
+    <!-- Phases -->
+    <div class="phases">
+      <div class="phase reveal">
+        <span class="phase-num">01</span>
+        <span class="phase-name">Escucha & Análisis</span>
+        <span class="phase-dur">2–4 sem.</span>
+      </div>
+      <div class="phase reveal reveal-delay-1">
+        <span class="phase-num">02</span>
+        <span class="phase-name">Anteproyecto</span>
+        <span class="phase-dur">4–6 sem.</span>
+      </div>
+      <div class="phase reveal reveal-delay-2">
+        <span class="phase-num">03</span>
+        <span class="phase-name">Proyecto Básico</span>
+        <span class="phase-dur">6–10 sem.</span>
+      </div>
+      <div class="phase reveal reveal-delay-3">
+        <span class="phase-num">04</span>
+        <span class="phase-name">Proyecto Ejecutivo</span>
+        <span class="phase-dur">8–12 sem.</span>
+      </div>
+      <div class="phase reveal">
+        <span class="phase-num">05</span>
+        <span class="phase-name">Dirección de Obra</span>
+        <span class="phase-dur">Variable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-photo reveal">
+    <div class="photo-frame">
+      <div class="photo-sketch">
+        <!-- Architectural portrait sketch -->
+        <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="80" rx="50" ry="60" stroke="white" stroke-width="1.5"/>
+          <path d="M 60 120 L 40 200 L 100 220 L 160 200 L 140 120" stroke="white" stroke-width="1.5" fill="none"/>
+          <line x1="40" y1="200" x2="100" y2="220" stroke="white" stroke-width="1"/>
+          <line x1="100" y1="220" x2="160" y2="200" stroke="white" stroke-width="1"/>
+          <!-- eyes -->
+          <ellipse cx="82" cy="72" rx="8" ry="5" stroke="white" stroke-width="1"/>
+          <ellipse cx="118" cy="72" rx="8" ry="5" stroke="white" stroke-width="1"/>
+          <!-- nose -->
+          <path d="M 100 78 L 95 95 L 105 95" stroke="white" stroke-width="0.8" fill="none"/>
+          <!-- hair -->
+          <path d="M 52 65 Q 60 30 100 25 Q 140 30 148 65" stroke="white" stroke-width="1.5" fill="none"/>
+          <!-- t-square reference -->
+          <line x1="20" y1="240" x2="180" y2="240" stroke="white" stroke-width="1"/>
+          <line x1="100" y1="215" x2="100" y2="240" stroke="white" stroke-width="0.5" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="photo-caption">ELENA MORÁN — ARQUITECTA COLEGIADA</div>
+  </div>
+
+  <div class="about-content reveal reveal-delay-1">
+    <div class="section-number">003 — ESTUDIO</div>
+    <h2>Arquitectura<br>con <em>propósito</em></h2>
+    <p>Graduada con distinción en la ETSAM, máster en Patrimonio por la Universidad Politécnica de Madrid. Quince años construyendo espacios que respetan la memoria del lugar.</p>
+    <p>El estudio trabaja desde la escala doméstica hasta el proyecto de ciudad, siempre con la misma convicción: la buena arquitectura mejora la vida de quienes la habitan.</p>
+    <div class="about-stats">
+      <div class="stat">
+        <span class="stat-num">47</span>
+        <span class="stat-label">Proyectos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">15</span>
+        <span class="stat-label">Años</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">08</span>
+        <span class="stat-label">Premios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <span class="contact-tag reveal">004 — Hablemos</span>
+  <h2 class="contact-heading reveal reveal-delay-1">
+    ¿Tienes<br>un <em>proyecto</em>?
+  </h2>
+  <a href="mailto:hola@elenaMoran.es" class="contact-email reveal reveal-delay-2">
+    <span>hola@elenaMoran.es</span>
+    <span class="contact-arrow">→</span>
+  </a>
+  <div class="contact-location reveal reveal-delay-3">
+    Madrid, España · +34 91 XXX XX XX
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2024 Elena Morán Arquitectura. Todos los derechos reservados.</span>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="#">Issuu</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').style.transition = 'opacity .6s ease';
+      document.getElementById('loader').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+      }, 600);
+    }, 2200);
+  });
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let rx = 0, ry = 0, cx = 0, cy = 0;
+
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cursor.style.left = cx + 'px';
+    cursor.style.top = cy + 'px';
+  });
+
+  (function animRing() {
+    rx += (cx - rx) * .12;
+    ry += (cy - ry) * .12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Horizontal drag scroll on projects
+  const track = document.getElementById('projectsTrack');
+  let isDown = false, startX, scrollLeft;
+
+  track.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => isDown = false);
+  track.addEventListener('mouseup', () => isDown = false);
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+  });
+</script>
+</body>
+</html>

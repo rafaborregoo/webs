@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMarcilla Arquitecta — Arquitecta en Marbella | Diseño, Reforma & Certificaciones</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Nuria Marcilla, arquitecta en Marbella y la Costa del Sol. Diseño arquitectónico, reformas integrales, certificado energético y coordinación catastral en Andalucía. Espacios que inspiran." />
+  <meta name="keywords" content="arquitecta Marbella, arquitectos Marbella, reforma vivienda Marbella, certificado energético Marbella, rehabilitación Costa del Sol, diseño arquitectónico Marbella, catastro Marbella" />
+  <meta name="author" content="Nuria Marcilla Arquitecta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nmarcillaarquitecta.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://nmarcillaarquitecta.com/" />
+  <meta property="og:title"       content="NMarcilla Arquitecta — Marbella" />
+  <meta property="og:description" content="Arquitecta en Marbella especializada en diseño, reformas y certificaciones. Transformamos espacios con creatividad y funcionalidad." />
+  <meta property="og:image"       content="https://nmarcillaarquitecta.com/img/og-image.jpg" />
+  <meta property="og:locale"      content="es_ES" />
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NMarcilla Arquitecta",
+    "description": "Arquitecta en Marbella. Diseño arquitectónico, reformas integrales, certificado energético y coordinación catastral en la Costa del Sol.",
+    "url": "https://nmarcillaarquitecta.com",
+    "telephone": "+34-666-665-727",
+    "email": "info@nmarcillaarquitecta.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Marbella",
+      "addressRegion": "Málaga",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.5101,
+      "longitude": -4.8825
+    },
+    "areaServed": ["Marbella", "Málaga", "Costa del Sol", "Andalucía"],
+    "serviceType": ["Arquitectura", "Reformas", "Certificado Energético", "Catastro"],
+    "priceRange": "€€€",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "sameAs": [
+      "https://www.instagram.com/nmarcillaarquitecta",
+      "https://www.linkedin.com/in/nmarcillaarquitecta"
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>
+    document.documentElement.classList.add('js', 'anim-pending');
+    window.__nmAnimFallback = window.setTimeout(function () {
+      document.documentElement.classList.remove('anim-pending');
+    }, 2600);
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Cursor personalizado -->
+  <div class="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-line"></div>
+    <div class="loader-text">CARGANDO ESTUDIO</div>
+  </div>
+
+  <!-- ======================== NAV ======================== -->
+  <nav id="navbar" class="dark-nav">
+    <a href="index.html" class="nav-logo">
+      NMarcilla
+      <span>Arquitecta</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contactar</a></li>
+    </ul>
+    <div class="nav-hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu">
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contactar</a>
+  </div>
+
+  <!-- ======================== HERO ======================== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-geo"></div>
+    <div class="hero-plan" aria-hidden="true">
+      <svg viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="draw-line" x="90" y="110" width="380" height="470" stroke="white" stroke-width="1.2"/>
+        <line class="draw-line" x1="90" y1="290" x2="470" y2="290" stroke="white" stroke-width="0.8"/>
+        <line class="draw-line" x1="275" y1="110" x2="275" y2="580" stroke="white" stroke-width="0.8"/>
+        <rect class="draw-line" x="120" y="145" width="110" height="105" stroke="white" stroke-width="0.9" stroke-dasharray="4 4"/>
+        <rect class="draw-line" x="290" y="150" width="130" height="72" stroke="white" stroke-width="0.9" stroke-dasharray="4 4"/>
+        <circle class="draw-line" cx="184" cy="360" r="56" stroke="white" stroke-width="0.8"/>
+        <line class="draw-line" x1="205" y1="110" x2="205" y2="88" stroke="#B8965A" stroke-width="0.9"/>
+        <line class="draw-line" x1="90" y1="88" x2="305" y2="88" stroke="#B8965A" stroke-width="0.6"/>
+        <line class="draw-line" x1="492" y1="120" x2="514" y2="120" stroke="#B8965A" stroke-width="0.9"/>
+        <line class="draw-line" x1="514" y1="120" x2="514" y2="580" stroke="#B8965A" stroke-width="0.6"/>
+      </svg>
+    </div>
+    <div class="hero-lines"></div>
+
+    <!-- Decoración SVG arquitectónica -->
+    <svg style="position:absolute;top:15%;right:8%;width:300px;opacity:0.06;pointer-events:none" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="1" width="298" height="398" stroke="white" stroke-width="1"/>
+      <line x1="0" y1="120" x2="300" y2="120" stroke="white" stroke-width="0.5"/>
+      <line x1="0" y1="240" x2="300" y2="240" stroke="white" stroke-width="0.5"/>
+      <line x1="100" y1="0" x2="100" y2="400" stroke="white" stroke-width="0.5"/>
+      <line x1="200" y1="0" x2="200" y2="400" stroke="white" stroke-width="0.5"/>
+      <rect x="40" y="160" width="60" height="80" stroke="white" stroke-width="1.5" fill="none"/>
+      <rect x="140" y="140" width="120" height="100" stroke="white" stroke-width="1.5" fill="none"/>
+      <line x1="40" y1="120" x2="40" y2="160" stroke="white" stroke-width="0.8"/>
+      <line x1="260" y1="120" x2="260" y2="140" stroke="white" stroke-width="0.8"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Arquitecta en Marbella · Costa del Sol</div>
+      <h1 class="hero-title">
+        Tu idea, tu sueño,<br>
+        <em>tu espacio</em><br>
+        real
+      </h1>
+      <p class="hero-subtitle">
+        La arquitectura forma parte de nuestra vida cotidiana. Transformar un espacio en un lugar de trabajo, de ocio o de vida es mi profesión y mi pasión. Llevo más de 20 años en la Costa del Sol.
+      </p>
+      <div class="hero-actions">
+        <a href="proyectos.html" class="btn-primary">
+          <span>Ver proyectos</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="contacto.html" class="btn-secondary">
+          Hablar con Nuria
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stats-item">
+        <div class="hero-stats-num"><span data-count="20" data-suffix="+">20+</span></div>
+        <div class="hero-stats-label">Años en la Costa del Sol</div>
+      </div>
+      <div class="hero-stats-item">
+        <div class="hero-stats-num"><span data-count="2003" data-suffix="">2003</span></div>
+        <div class="hero-stats-label">Fundación del estudio</div>
+      </div>
+      <div class="hero-stats-item">
+        <div class="hero-stats-num"><span data-count="12" data-suffix="">12</span></div>
+        <div class="hero-stats-label">Servicios especializados</div>
+      </div>
+    </div>
+
+    <div class="hero-annotation">
+      <div class="annotation-mark">
+        <span class="annotation-mark-line"></span>
+        <span>Plano base / Esc. 1:100</span>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">Scroll</div>
+    <div class="scroll-fall-line" aria-hidden="true"></div>
+  </section>
+
+  <!-- ======================== SERVICIOS ======================== -->
+  <section id="servicios">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-eyebrow reveal">Nuestros servicios</div>
+          <h2 class="section-title reveal delay-1">Todo lo que necesitas<br><strong>en un solo lugar</strong></h2>
+        </div>
+        <p class="section-subtitle reveal delay-2">Desde el primer boceto hasta la entrega de llaves, acompañamos cada etapa de tu proyecto con profesionalidad y cuidado por los detalles.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card reveal delay-1">
+          <div class="service-card-num">01</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polygon points="3 9 12 2 21 9 21 20 3 20"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Arquitectura y Diseño</h3>
+          <p class="service-card-text">Te ayudo a dar forma a esa idea que tienes en la cabeza, aplicando toda la experiencia para dotarla de funcionalidad, eficiencia energética y estilo. La mezcla de arquitectura tradicional andaluza con espacios modernos forma una fusión maravillosa.</p>
+          <a href="servicios.html#diseno" class="service-card-link">
+            Saber más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card reveal delay-2">
+          <div class="service-card-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 20h20M4 20V8l8-6 8 6v12"/>
+              <path d="M9 20V14h6v6"/>
+              <circle cx="12" cy="10" r="1.5"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Rehabilitaciones y Reformas</h3>
+          <p class="service-card-text">Hay muchas viviendas y locales de cierta antigüedad que necesitan ser renovados. Puedo acometer una rehabilitación integral o simplemente reformar las estancias más deterioradas y darles un aire moderno.</p>
+          <a href="servicios.html#rehabilitacion" class="service-card-link">
+            Saber más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal delay-3">
+          <div class="service-card-num">03</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Certificado Energético</h3>
+          <p class="service-card-text">Documento obligatorio para inscribir una vivienda según el Real Decreto 235/2013. Te ayudo con los trámites, obtengo la Etiqueta Energética y realizo el registro en la Junta de Andalucía.</p>
+          <a href="servicios.html#certificado" class="service-card-link">
+            Saber más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card reveal delay-4">
+          <div class="service-card-num">04</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Tasaciones y Peritaciones</h3>
+          <p class="service-card-text">Más de 20 años haciendo tasaciones para garantía hipotecaria, hacienda, herencias y valor de mercado. Para todo tipo de inmueble: viviendas, locales, oficinas, naves y fincas rústicas.</p>
+          <a href="servicios.html#catastro" class="service-card-link">
+            Saber más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PROYECTOS ======================== -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="projects-header">
+        <div>
+          <div class="section-eyebrow reveal">Portfolio selecto</div>
+          <h2 class="section-title reveal delay-1">Proyectos que <em>inspiran</em></h2>
+        </div>
+        <div class="projects-filter reveal delay-2">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="residencial">Residencial</button>
+          <button class="filter-btn" data-filter="rehabilitacion">Rehabilitación</button>
+          <button class="filter-btn" data-filter="comercial">Comercial</button>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Proyecto 1 — Grande -->
+        <div class="project-item" data-cat="residencial">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#1A3A52 0%,#2F6C9C 50%,#4A8BB5 100%)">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.3">
+              <rect x="10" y="30" width="60" height="40" stroke="white" stroke-width="2"/>
+              <polyline points="5,32 40,10 75,32" stroke="white" stroke-width="2" fill="none"/>
+              <rect x="28" y="45" width="24" height="25" stroke="white" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Residencial</div>
+            <div class="project-name">Villa Mediterránea</div>
+            <div class="project-loc">Marbella, Málaga · 2024</div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="project-item" data-cat="rehabilitacion">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#245580 0%,#B8965A 100%)">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" opacity="0.3">
+              <rect x="5" y="15" width="50" height="40" stroke="white" stroke-width="1.5"/>
+              <line x1="5" y1="25" x2="55" y2="25" stroke="white" stroke-width="1"/>
+              <rect x="20" y="30" width="20" height="25" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Rehabilitación</div>
+            <div class="project-name">Cortijo Renovado</div>
+            <div class="project-loc">Estepona · 2023</div>
+          </div>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="project-item" data-cat="residencial">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#2F6C9C 0%,#1A3A52 100%)">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" opacity="0.3">
+              <circle cx="30" cy="30" r="25" stroke="white" stroke-width="1.5"/>
+              <line x1="5" y1="30" x2="55" y2="30" stroke="white" stroke-width="1"/>
+              <line x1="30" y1="5" x2="30" y2="55" stroke="white" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Residencial</div>
+            <div class="project-name">Ático Panorámico</div>
+            <div class="project-loc">Puerto Banús · 2023</div>
+          </div>
+        </div>
+
+        <!-- Proyecto 4 -->
+        <div class="project-item" data-cat="comercial">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#1C1C1C 0%,#2F6C9C 100%)">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
+              <rect x="5" y="10" width="40" height="35" stroke="white" stroke-width="1.5"/>
+              <line x1="5" y1="20" x2="45" y2="20" stroke="white" stroke-width="1"/>
+              <rect x="12" y="25" width="10" height="20" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="28" y="25" width="10" height="20" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Comercial</div>
+            <div class="project-name">Showroom Diseño</div>
+            <div class="project-loc">Marbella · 2022</div>
+          </div>
+        </div>
+
+        <!-- Proyecto 5 -->
+        <div class="project-item" data-cat="rehabilitacion">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#B8965A 0%,#1A3A52 100%)">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
+              <polygon points="25,5 45,20 45,45 5,45 5,20" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="5" y1="30" x2="45" y2="30" stroke="white" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Rehabilitación</div>
+            <div class="project-name">Casa Tradición</div>
+            <div class="project-loc">Benahavís · 2022</div>
+          </div>
+        </div>
+
+        <!-- Proyecto 6 -->
+        <div class="project-item" data-cat="residencial">
+          <div class="project-placeholder" style="background:linear-gradient(135deg,#4A8BB5 0%,#245580 100%)">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
+              <rect x="10" y="10" width="30" height="30" stroke="white" stroke-width="1.5" rx="2"/>
+              <rect x="18" y="18" width="14" height="14" stroke="white" stroke-width="1" fill="none"/>
+              <line x1="10" y1="25" x2="18" y2="25" stroke="white" stroke-width="0.8"/>
+              <line x1="32" y1="25" x2="40" y2="25" stroke="white" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="project-overlay">
+            <div class="project-cat">Residencial</div>
+            <div class="project-name">Dúplex Moderno</div>
+            <div class="project-loc">Nueva Andalucía · 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:50px" class="reveal">
+        <a href="proyectos.html" class="btn-primary" style="display:inline-flex">
+          <span>Ver todos los proyectos</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SOBRE MÍ ======================== -->
+  <section id="sobre-mi">
+    <div class="about-wrap">
+      <!-- Imagen lado -->
+      <div class="about-img-side reveal-left">
+        <div class="about-img-placeholder" style="background:linear-gradient(160deg,#1A3A52 0%,#2F6C9C 40%,#245580 100%);display:flex;align-items:center;justify-content:center;">
+          <svg width="180" height="220" viewBox="0 0 180 220" fill="none" opacity="0.15">
+            <rect x="10" y="40" width="160" height="170" stroke="white" stroke-width="1.5"/>
+            <ellipse cx="90" cy="40" rx="45" ry="35" stroke="white" stroke-width="1.5" fill="none"/>
+            <line x1="10" y1="100" x2="170" y2="100" stroke="white" stroke-width="0.8"/>
+            <line x1="10" y1="150" x2="170" y2="150" stroke="white" stroke-width="0.8"/>
+            <line x1="70" y1="40" x2="70" y2="210" stroke="white" stroke-width="0.8"/>
+            <line x1="110" y1="40" x2="110" y2="210" stroke="white" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="about-img-badge">
+          <strong>+15</strong>
+          <span>años creando<br>espacios únicos</span>
+        </div>
+      </div>
+
+      <!-- Contenido lado -->
+      <div class="about-content-side reveal-right">
+        <div class="section-eyebrow">Arquitecta · Marbella</div>
+        <h2 class="section-title">Soy <strong>Nuria Marcilla</strong>,<br><em>arquitecta</em><br>en Marbella</h2>
+        <p class="about-text">
+          Soy arquitecta apasionada por la creación de espacios que no solo reflejan la belleza estética, sino que también encarnan la esencia y funcionalidad que transforman la vida cotidiana. Transformar un espacio en un lugar de trabajo, de ocio o de vida es mi profesión y mi pasión.
+        </p>
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Más de 20 años en la Costa del Sol</div>
+              <div class="about-value-text">Me crié aquí y desarrollé mi gusto por la arquitectura tradicional andaluza. Conozco el territorio, la normativa y el mercado como nadie.</div>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Estudio propio desde 2003</div>
+              <div class="about-value-text">Inicié mi actividad profesional en el año 2000 y fundé mi propio estudio en Marbella en 2003. Más de dos décadas de experiencia acumulada.</div>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div>
+              <div class="about-value-title">Equipo especializado detrás</div>
+              <div class="about-value-text">Dotamos los espacios de eficiencia energética, sostenibilidad y funcionalidad gracias a un equipo que ayuda en cada una de las distintas actuaciones necesarias.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <a href="sobre-mi.html" class="btn-primary" style="display:inline-flex;background:var(--gold);color:var(--white)">
+            <span>Conocer mi historia</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PROCESO ======================== -->
+  <section id="proceso">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:0">
+        <div class="section-eyebrow reveal" style="justify-content:center">Cómo trabajamos</div>
+        <h2 class="section-title reveal delay-1" style="text-align:center">Un proceso <strong>claro</strong> y <em>transparente</em></h2>
+        <p class="section-subtitle reveal delay-2" style="margin:16px auto 0;text-align:center">Cada proyecto sigue una metodología probada que garantiza resultados excepcionales en el tiempo acordado.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal delay-1">
+          <div class="process-num">01</div>
+          <h3 class="process-title">Primera reunión</h3>
+          <p class="process-text">Escuchamos tus ideas, necesidades y presupuesto. Sin compromiso. La primera consulta es completamente gratuita.</p>
+        </div>
+        <div class="process-step reveal delay-2">
+          <div class="process-num">02</div>
+          <h3 class="process-title">Estudio previo</h3>
+          <p class="process-text">Analizamos el solar o inmueble, realizamos mediciones y estudiamos la normativa urbanística aplicable.</p>
+        </div>
+        <div class="process-step reveal delay-3">
+          <div class="process-num">03</div>
+          <h3 class="process-title">Propuesta de diseño</h3>
+          <p class="process-text">Presentamos bocetos, renders 3D y memoria descriptiva para que visualices tu proyecto antes de comenzar.</p>
+        </div>
+        <div class="process-step reveal delay-4">
+          <div class="process-num">04</div>
+          <h3 class="process-title">Desarrollo y trámites</h3>
+          <p class="process-text">Redactamos el proyecto ejecutivo, gestionamos licencias y coordinamos con la constructora seleccionada.</p>
+        </div>
+        <div class="process-step reveal delay-5">
+          <div class="process-num">05</div>
+          <h3 class="process-title">Entrega y post-obra</h3>
+          <p class="process-text">Supervisamos la obra, realizamos la certificación final y te acompañamos hasta que estés 100% satisfecho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TESTIMONIO ======================== -->
+  <section id="testimonio">
+    <div class="testimonial-inner">
+      <div class="reveal">
+        <p class="testimonial-text">
+          "Nuria convirtió nuestra casa en Marbella en el hogar que siempre habíamos soñado. Su capacidad para entender lo que queríamos, incluso antes de que pudiéramos explicarlo, es extraordinaria."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-name">María y Carlos Rodríguez</div>
+            <div class="testimonial-role">Villa residencial · Marbella Golden Mile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CONTACTO CTA ======================== -->
+  <section id="contacto-cta">
+    <div class="container">
+      <div class="cta-wrap">
+        <div class="cta-left">
+          <div class="section-eyebrow reveal">Hablemos</div>
+          <h2 class="section-title reveal delay-1">¿Tienes un proyecto<br>en mente?</h2>
+          <p class="section-subtitle reveal delay-2">
+            Cuéntame tu idea y en menos de 48 horas te respondo con una primera propuesta. La consulta inicial es <strong>completamente gratuita</strong>.
+          </p>
+          <div class="contact-info reveal delay-3">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .99h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Teléfono</div>
+                <div class="contact-item-value">+34 666 665 727</div>
+                <div class="contact-item-sub">Lunes a Viernes, 9:00 – 18:00</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">info@nmarcillaarquitecta.com</div>
+                <div class="contact-item-sub">Respuesta en menos de 48h</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Ubicación</div>
+                <div class="contact-item-value">Marbella, Málaga</div>
+                <div class="contact-item-sub">Costa del Sol · Andalucía</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right delay-2">
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="servicio">Servicio de interés</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona un servicio…</option>
+                <option>Diseño arquitectónico</option>
+                <option>Rehabilitación / Reforma</option>
+                <option>Certificado energético</option>
+                <option>Coordinación catastral</option>
+                <option>Consulta general</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Cuéntame tu proyecto</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Describe brevemente tu proyecto o consulta…" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <span>Enviar mensaje</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">NMarcilla <span>Arquitecta</span></a>
+          <p>Arquitecta en Marbella y la Costa del Sol. Transformamos ideas en espacios que inspiran, con pasión por el detalle y vocación de servicio.</p>
+          <div class="footer-socials" style="margin-top:24px">
+            <a href="#" class="footer-social" title="Instagram">in</a>
+            <a href="#" class="footer-social" title="LinkedIn">li</a>
+            <a href="#" class="footer-social" title="Houzz">h</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="servicios.html#diseno">Diseño Arquitectónico</a></li>
+            <li><a href="servicios.html#rehabilitacion">Rehabilitación</a></li>
+            <li><a href="servicios.html#certificado">Certificado Energético</a></li>
+            <li><a href="servicios.html#catastro">Coordinación Catastral</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Zona de actuación</h4>
+          <ul>
+            <li><a href="#">Marbella</a></li>
+            <li><a href="#">Estepona</a></li>
+            <li><a href="#">Puerto Banús</a></li>
+            <li><a href="#">Benahavís</a></li>
+            <li><a href="#">Costa del Sol</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NMarcilla Arquitecta · Todos los derechos reservados</span>
+        <div style="display:flex;gap:24px">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Aviso legal</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

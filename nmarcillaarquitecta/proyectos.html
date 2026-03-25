@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyectos — Portfolio de Arquitectura en Marbella | NMarcilla Arquitecta</title>
+  <meta name="description" content="Portfolio de proyectos de Nuria Marcilla: villas residenciales, rehabilitaciones y espacios comerciales en Marbella y la Costa del Sol." />
+  <meta name="keywords" content="proyectos arquitectura Marbella, portfolio arquitecta Marbella, villas Marbella, reforma vivienda Costa del Sol" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nmarcillaarquitecta.com/proyectos/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>
+    document.documentElement.classList.add('js', 'anim-pending');
+    window.__nmAnimFallback = window.setTimeout(function () {
+      document.documentElement.classList.remove('anim-pending');
+    }, 2600);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- FILTER BAR ---- */
+    .filter-bar {
+      position: sticky;
+      top: var(--nav-h);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid var(--beige-dark);
+      padding: 16px 0;
+      transition: box-shadow 0.3s;
+    }
+    .filter-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .projects-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-bar .filter-btn {
+      min-width: 140px;
+      border-color: rgba(47,108,156,0.18);
+      background: rgba(255,255,255,0.92);
+      color: var(--blue-dark);
+      box-shadow: 0 0 0 rgba(47,108,156,0);
+      transition:
+        background 0.3s,
+        color 0.3s,
+        border-color 0.3s,
+        transform 0.25s var(--ease-out),
+        box-shadow 0.25s var(--ease-out);
+    }
+    .filter-bar .filter-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(47,108,156,0.4);
+      box-shadow: 0 12px 24px rgba(47,108,156,0.08);
+    }
+    .filter-bar .filter-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: 0 14px 30px rgba(47,108,156,0.2);
+      transform: translateY(-1px);
+    }
+    .filter-count {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+    .filter-count strong { color: var(--blue); }
+    #proj-count {
+      display: inline-block;
+      min-width: 1ch;
+      transition: transform 0.25s var(--ease-out), color 0.25s ease;
+    }
+    #proj-count.updating {
+      transform: translateY(-2px) scale(1.08);
+      color: var(--gold);
+    }
+
+    /* ---- PROJECTS MASONRY ---- */
+    .projects-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 60px 0;
+    }
+    .proj-card {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s var(--ease-out), opacity 0.4s, box-shadow 0.4s;
+    }
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(245,240,235,0.28) 100%);
+      opacity: 1;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .proj-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(47,108,156,0.18);
+    }
+    .proj-card:hover::before { opacity: 0; }
+    .proj-card.filtered-out {
+      opacity: 0.15;
+      transform: scale(0.97);
+      pointer-events: none;
+    }
+    .proj-card.is-hiding {
+      opacity: 0;
+      transform: scale(0.96) translateY(18px);
+      pointer-events: none;
+    }
+    .proj-card.is-hidden {
+      display: none;
+    }
+    .proj-card.is-entering {
+      animation: projectCardIn 0.45s var(--ease-out);
+    }
+    .proj-card:nth-child(3n+1) { grid-row: span 2; }
+    .projects-masonry .proj-card.reveal,
+    .projects-masonry .proj-card.reveal.visible,
+    html.anim-pending .projects-masonry .proj-card.reveal,
+    html.reveal-ready .projects-masonry .proj-card.reveal:not(.visible) {
+      opacity: 1 !important;
+    }
+    .proj-visual {
+      position: relative;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .proj-visual svg { opacity: 0.28; }
+    .proj-card:nth-child(3n+1) .proj-visual { min-height: 560px; }
+    .proj-card:hover .proj-visual { transform: scale(1.06); }
+    .proj-info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,58,82,0.92) 0%, rgba(26,58,82,0.2) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.45s, transform 0.45s;
+      z-index: 3;
+    }
+    .proj-card:hover .proj-info { opacity: 1; transform: translateY(0); }
+    /* Always show info on small screens */
+    .proj-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 24px 24px;
+      background: linear-gradient(0deg, rgba(245,240,235,0.9) 0%, transparent 100%);
+      z-index: 2;
+      transition: opacity 0.3s;
+    }
+    .proj-card:hover .proj-label { opacity: 0; }
+    .proj-cat-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .proj-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .proj-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+    }
+    .proj-label .proj-cat-tag { color: var(--blue); }
+    .proj-label .proj-name { color: var(--dark); font-size: 1.15rem; }
+    .proj-label .proj-sub { color: var(--text-light); }
+    .proj-detail {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.3s, gap 0.3s;
+    }
+    .proj-link:hover { border-color: var(--gold); gap: 14px; }
+    @keyframes projectCardIn {
+      from { opacity: 0; transform: scale(0.97) translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ---- STATS BAND ---- */
+    .stats-band {
+      background: var(--blue);
+      padding: 60px 0;
+    }
+    .stats-band .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+    .stat-item-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-item-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+    }
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+      margin: 0 auto;
+    }
+
+    /* ---- LIGHTBOX ---- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,58,82,0.97);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-close {
+      position: absolute;
+      top: 30px; right: 30px;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(255,255,255,0.6);
+      transition: border-color 0.3s, color 0.3s;
+      background: none;
+    }
+    .lightbox-close:hover { border-color: var(--white); color: var(--white); }
+    .lightbox-content {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 0;
+      max-width: 1100px;
+      width: 95%;
+      max-height: 90vh;
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--white);
+      transform: translateY(30px) scale(0.97);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .lightbox.open .lightbox-content { transform: translateY(0) scale(1); }
+    .lightbox-img {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-info {
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+    }
+    .lightbox-cat { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); }
+    .lightbox-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 300; color: var(--dark); }
+    .lightbox-meta { display: flex; flex-direction: column; gap: 10px; }
+    .lightbox-meta-item { display: flex; gap: 12px; font-size: 0.85rem; color: var(--text-light); }
+    .lightbox-meta-item strong { color: var(--dark); font-weight: 500; min-width: 80px; }
+    .lightbox-desc { font-size: 0.9rem; color: var(--text-light); line-height: 1.75; border-top: 1px solid var(--beige-dark); padding-top: 20px; }
+
+    @media(max-width:900px) {
+      .projects-masonry { grid-template-columns: 1fr 1fr; }
+      .proj-card:nth-child(3n+1) { grid-row: span 1; }
+      .proj-card:nth-child(3n+1) .proj-visual { min-height: 260px; }
+      .proj-card::before { opacity: 0; }
+      .proj-info { opacity: 1; transform: none; }
+      .proj-label { display: none; }
+      .filter-bar .filter-btn { min-width: 0; }
+      .stats-band .container { grid-template-columns: 1fr 1fr; }
+      .lightbox-content { grid-template-columns: 1fr; }
+      .lightbox-img { aspect-ratio: 16/9; }
+    }
+    @media(max-width:600px) {
+      .projects-masonry { grid-template-columns: 1fr; }
+      .stats-band .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+  <div id="scroll-progress"></div>
+
+  <nav id="navbar" class="inner-nav">
+    <a href="index.html" class="nav-logo">NMarcilla<span>Arquitecta</span></a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="proyectos.html" style="color:var(--blue)">Proyectos</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contactar</a></li>
+    </ul>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mobile-menu">
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contactar</a>
+  </div>
+
+  <div class="page-hero" style="margin-top:var(--nav-h)">
+    <div class="page-hero-copy">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> · Proyectos</div>
+      <h1 class="page-hero-title">Portfolio de <em>Proyectos</em></h1>
+      <div class="page-hero-meta annotation-mark">
+        <span class="annotation-mark-line"></span>
+        <span>Portfolio curado / Villas y reformas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="projects-filter">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="residencial">Residencial</button>
+        <button class="filter-btn" data-filter="rehabilitacion">Rehabilitación</button>
+        <button class="filter-btn" data-filter="comercial">Comercial</button>
+      </div>
+      <div class="filter-count">Mostrando <strong id="proj-count">12</strong> proyectos</div>
+    </div>
+  </div>
+
+  <!-- Projects masonry -->
+  <section style="background:var(--beige)">
+    <div class="container">
+      <div class="projects-masonry" id="proj-grid">
+
+        <!-- 1 -->
+        <div class="proj-card reveal" data-cat="residencial"
+             data-name="Villa Mediterránea" data-loc="Marbella Golden Mile, 2024"
+             data-area="380 m²" data-dur="14 meses"
+             data-desc="Villa de nueva planta con 5 dormitorios, piscina infinita y vistas al Mediterráneo. Combinación de hormigón visto con madera de iroko y grandes ventanales.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#1A3A52 0%,#2F6C9C 50%,#4A8BB5 100%)">
+            <svg width="80" height="100" viewBox="0 0 80 100" fill="none" opacity="0.18">
+              <polygon points="40,5 75,25 75,90 5,90 5,25" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="5" y1="50" x2="75" y2="50" stroke="white" stroke-width="0.8"/>
+              <rect x="25" y="60" width="30" height="30" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="10" y="55" width="12" height="12" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="58" y="55" width="12" height="12" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Villa Mediterránea</div>
+            <div class="proj-sub">Marbella Golden Mile · 2024</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Villa Mediterránea</div>
+            <div class="proj-sub">Marbella Golden Mile · 2024</div>
+            <div class="proj-detail">380 m² · 14 meses de obra · Piscina infinita y vistas al mar</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="proj-card reveal delay-1" data-cat="rehabilitacion"
+             data-name="Cortijo Renovado" data-loc="Estepona, 2023"
+             data-area="220 m²" data-dur="8 meses"
+             data-desc="Rehabilitación integral de cortijo andaluz del siglo XIX. Respeto total por la volumetría original con modernización completa del interior y eficiencia energética clase A.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#B8965A 0%,#245580 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="8" y="20" width="54" height="42" stroke="white" stroke-width="1.5" fill="none"/>
+              <path d="M8 32 Q35 18 62 32" stroke="white" stroke-width="1.5" fill="none"/>
+              <rect x="22" y="38" width="26" height="24" stroke="white" stroke-width="1" fill="none"/>
+              <line x1="35" y1="38" x2="35" y2="62" stroke="white" stroke-width="0.8"/>
+              <circle cx="14" cy="16" r="8" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Cortijo Renovado</div>
+            <div class="proj-sub">Estepona · 2023</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Cortijo Renovado</div>
+            <div class="proj-sub">Estepona · 2023</div>
+            <div class="proj-detail">220 m² · 8 meses · Rehabilitación integral. Eficiencia energética clase A</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="proj-card reveal delay-2" data-cat="residencial"
+             data-name="Ático Panorámico" data-loc="Puerto Banús, 2023"
+             data-area="180 m²" data-dur="6 meses"
+             data-desc="Reforma integral de ático en primera línea de playa. Apertura de espacios diáfanos, terraza espectacular con vistas de 270° al puerto y al Mediterráneo.">
+          <div class="proj-visual" style="background:linear-gradient(160deg,#2F6C9C 0%,#1A3A52 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="10" y="10" width="50" height="50" stroke="white" stroke-width="1.5" fill="none" rx="2"/>
+              <line x1="10" y1="30" x2="60" y2="30" stroke="white" stroke-width="0.8"/>
+              <line x1="35" y1="10" x2="35" y2="60" stroke="white" stroke-width="0.8"/>
+              <circle cx="35" cy="20" r="6" stroke="white" stroke-width="1.5" fill="none"/>
+              <path d="M10 60 Q35 45 60 60" stroke="white" stroke-width="1.2" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Ático Panorámico</div>
+            <div class="proj-sub">Puerto Banús · 2023</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Ático Panorámico</div>
+            <div class="proj-sub">Puerto Banús · 2023</div>
+            <div class="proj-detail">180 m² · 6 meses · Vistas 270° al puerto y al Mediterráneo</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="proj-card reveal delay-1" data-cat="comercial"
+             data-name="Showroom de Diseño" data-loc="Marbella, 2022"
+             data-area="340 m²" data-dur="5 meses"
+             data-desc="Local comercial premium para showroom de interiorismo. Doble altura, iluminación escénica y expositor con módulos desmontables. Premio al mejor diseño comercial Málaga 2023.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#1C1C1C 0%,#2F6C9C 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="5" y="15" width="60" height="50" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="5" y1="30" x2="65" y2="30" stroke="white" stroke-width="1"/>
+              <rect x="15" y="38" width="14" height="27" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="41" y="38" width="14" height="27" stroke="white" stroke-width="1" fill="none"/>
+              <path d="M5 15 L35 5 L65 15" stroke="white" stroke-width="1.2" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Comercial</div>
+            <div class="proj-name">Showroom de Diseño</div>
+            <div class="proj-sub">Marbella · 2022</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Comercial</div>
+            <div class="proj-name">Showroom de Diseño</div>
+            <div class="proj-sub">Marbella · 2022</div>
+            <div class="proj-detail">340 m² · 5 meses · Premio al mejor diseño comercial Málaga 2023</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="proj-card reveal delay-2" data-cat="rehabilitacion"
+             data-name="Casa Tradición" data-loc="Benahavís, 2022"
+             data-area="290 m²" data-dur="10 meses"
+             data-desc="Rehabilitación de vivienda tradicional andaluza integrando tecnología domótica y materiales de última generación sin perder el carácter original de la construcción.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#B8965A 20%,#1A3A52 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <polygon points="35,8 62,25 62,62 8,62 8,25" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="8" y1="42" x2="62" y2="42" stroke="white" stroke-width="0.8"/>
+              <rect x="22" y="44" width="26" height="18" stroke="white" stroke-width="1" fill="none"/>
+              <circle cx="35" cy="33" r="6" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Casa Tradición</div>
+            <div class="proj-sub">Benahavís · 2022</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Casa Tradición</div>
+            <div class="proj-sub">Benahavís · 2022</div>
+            <div class="proj-detail">290 m² · 10 meses · Domótica integrada con carácter andaluz</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="proj-card reveal delay-3" data-cat="residencial"
+             data-name="Dúplex Moderno" data-loc="Nueva Andalucía, 2021"
+             data-area="145 m²" data-dur="4 meses"
+             data-desc="Reforma de dúplex en urbanización de golf. Apertura completa de planta baja, cocina integrada en salón y terraza superior privada con vistas al campo de golf.">
+          <div class="proj-visual" style="background:linear-gradient(160deg,#4A8BB5 0%,#245580 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="12" y="10" width="46" height="22" stroke="white" stroke-width="1.5" fill="none"/>
+              <rect x="12" y="38" width="46" height="22" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="12" y1="32" x2="58" y2="32" stroke="white" stroke-width="2"/>
+              <line x1="35" y1="10" x2="35" y2="60" stroke="white" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Dúplex Moderno</div>
+            <div class="proj-sub">Nueva Andalucía · 2021</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Dúplex Moderno</div>
+            <div class="proj-sub">Nueva Andalucía · 2021</div>
+            <div class="proj-detail">145 m² · 4 meses · Vistas al campo de golf de La Quinta</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="proj-card reveal delay-1" data-cat="residencial"
+             data-name="Villa Minimalista" data-loc="Sierra Blanca, 2021"
+             data-area="520 m²" data-dur="18 meses"
+             data-desc="Villa de lujo en Sierra Blanca con 6 dormitorios en suite, spa privado, cine y bodega. Arquitectura minimalista con materiales de máxima calidad.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#1A3A52 0%,#4A8BB5 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="5" y="20" width="60" height="45" stroke="white" stroke-width="1.5" fill="none"/>
+              <rect x="5" y="5" width="60" height="18" stroke="white" stroke-width="1" fill="none"/>
+              <line x1="5" y1="40" x2="65" y2="40" stroke="white" stroke-width="0.8"/>
+              <rect x="20" y="47" width="12" height="18" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="38" y="47" width="12" height="18" stroke="white" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Villa Minimalista</div>
+            <div class="proj-sub">Sierra Blanca · 2021</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Residencial</div>
+            <div class="proj-name">Villa Minimalista</div>
+            <div class="proj-sub">Sierra Blanca · 2021</div>
+            <div class="proj-detail">520 m² · 18 meses · Spa privado, cine y bodega</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="proj-card reveal delay-2" data-cat="comercial"
+             data-name="Oficinas Premium" data-loc="Marbella Centro, 2020"
+             data-area="200 m²" data-dur="3 meses"
+             data-desc="Diseño de oficinas para consultoría de inversión inmobiliaria. Ambiente elegante y confidencial con salas de reuniones privadas y recepción de alta representación.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#2F6C9C 0%,#1C1C1C 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <rect x="8" y="12" width="54" height="48" stroke="white" stroke-width="1.5" fill="none" rx="2"/>
+              <line x1="8" y1="26" x2="62" y2="26" stroke="white" stroke-width="1"/>
+              <rect x="15" y="34" width="15" height="10" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="38" y="34" width="15" height="10" stroke="white" stroke-width="1" fill="none"/>
+              <rect x="15" y="50" width="15" height="6" stroke="white" stroke-width="0.8" fill="none"/>
+              <rect x="38" y="50" width="15" height="6" stroke="white" stroke-width="0.8" fill="none"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Comercial</div>
+            <div class="proj-name">Oficinas Premium</div>
+            <div class="proj-sub">Marbella Centro · 2020</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Comercial</div>
+            <div class="proj-name">Oficinas Premium</div>
+            <div class="proj-sub">Marbella Centro · 2020</div>
+            <div class="proj-detail">200 m² · 3 meses · Consultoría de inversión inmobiliaria</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="proj-card reveal delay-3" data-cat="rehabilitacion"
+             data-name="Loft Industrial" data-loc="Málaga Capital, 2020"
+             data-area="110 m²" data-dur="3 meses"
+             data-desc="Transformación de nave industrial de principios del siglo XX en loft de diseño. Conservación de estructura de hierro original integrada en el nuevo diseño.">
+          <div class="proj-visual" style="background:linear-gradient(135deg,#245580 0%,#B8965A 100%)">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
+              <path d="M5 35 L35 10 L65 35 L65 65 L5 65 Z" stroke="white" stroke-width="1.5" fill="none"/>
+              <line x1="5" y1="50" x2="65" y2="50" stroke="white" stroke-width="0.8"/>
+              <rect x="20" y="52" width="30" height="13" stroke="white" stroke-width="1" fill="none"/>
+              <line x1="35" y1="35" x2="35" y2="52" stroke="white" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div class="proj-label">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Loft Industrial</div>
+            <div class="proj-sub">Málaga Capital · 2020</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-cat-tag">Rehabilitación</div>
+            <div class="proj-name">Loft Industrial</div>
+            <div class="proj-sub">Málaga Capital · 2020</div>
+            <div class="proj-detail">110 m² · 3 meses · Nave del s.XX reconvertida en loft de diseño</div>
+            <span class="proj-link">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <div class="stats-band">
+    <div class="container">
+      <div class="stat-item">
+        <div class="stat-item-num"><span data-count="120" data-suffix="+">120+</span></div>
+        <div class="stat-item-label">Proyectos completados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-num"><span data-count="15" data-suffix="+">15+</span></div>
+        <div class="stat-item-label">Años de experiencia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-num"><span data-count="98" data-suffix="%">98%</span></div>
+        <div class="stat-item-label">Clientes satisfechos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-num"><span data-count="3" data-suffix="">3</span></div>
+        <div class="stat-item-label">Premios de diseño</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section style="background:var(--white);padding:80px 0;text-align:center">
+    <div class="container">
+      <div class="section-eyebrow reveal" style="justify-content:center">Tu proyecto, el siguiente</div>
+      <h2 class="section-title reveal delay-1">¿Quieres que hablemos<br>de <strong>tu proyecto</strong>?</h2>
+      <p class="section-subtitle reveal delay-2" style="margin:16px auto 40px;text-align:center">Primera consulta gratuita y sin compromiso. Cuéntame tu idea.</p>
+      <div class="reveal delay-3">
+        <a href="contacto.html" class="btn-primary" style="display:inline-flex">
+          <span>Contactar ahora</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <div class="lightbox-img" id="lb-img"></div>
+      <div class="lightbox-info">
+        <div class="lightbox-cat" id="lb-cat"></div>
+        <div class="lightbox-title" id="lb-title"></div>
+        <div class="lightbox-meta">
+          <div class="lightbox-meta-item"><strong>Ubicación</strong> <span id="lb-loc"></span></div>
+          <div class="lightbox-meta-item"><strong>Superficie</strong> <span id="lb-area"></span></div>
+          <div class="lightbox-meta-item"><strong>Duración</strong> <span id="lb-dur"></span></div>
+        </div>
+        <div class="lightbox-desc" id="lb-desc"></div>
+        <a href="contacto.html" class="btn-primary" style="display:inline-flex;margin-top:8px">
+          <span>Proyecto similar</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">NMarcilla <span>Arquitecta</span></a>
+          <p>Arquitecta en Marbella y la Costa del Sol. Transformamos ideas en espacios que inspiran.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="servicios.html#diseno">Diseño Arquitectónico</a></li>
+            <li><a href="servicios.html#rehabilitacion">Rehabilitación</a></li>
+            <li><a href="servicios.html#certificado">Certificado Energético</a></li>
+            <li><a href="servicios.html#catastro">Coordinación Catastral</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Zona de actuación</h4>
+          <ul>
+            <li><a href="#">Marbella</a></li>
+            <li><a href="#">Estepona</a></li>
+            <li><a href="#">Puerto Banús</a></li>
+            <li><a href="#">Costa del Sol</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 NMarcilla Arquitecta · Todos los derechos reservados</span>
+        <div style="display:flex;gap:24px"><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    document.querySelectorAll('.proj-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (card.classList.contains('filtered-out')) return;
+        document.getElementById('lb-cat').textContent   = card.dataset.cat?.toUpperCase() || '';
+        document.getElementById('lb-title').textContent = card.dataset.name || '';
+        document.getElementById('lb-loc').textContent   = card.dataset.loc  || '';
+        document.getElementById('lb-area').textContent  = card.dataset.area || '';
+        document.getElementById('lb-dur').textContent   = card.dataset.dur  || '';
+        document.getElementById('lb-desc').textContent  = card.dataset.desc || '';
+        const vis = card.querySelector('.proj-visual');
+        const lbImg = document.getElementById('lb-img');
+        lbImg.style.background = vis ? vis.style.background : 'var(--blue)';
+        lbImg.innerHTML = vis ? vis.innerHTML : '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    lb.addEventListener('click', e => {
+      if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+
+    // Filter with count + animated transitions
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+    const projectCards = Array.from(document.querySelectorAll('.proj-card[data-cat]'));
+    const projectCount = document.getElementById('proj-count');
+
+    function updateCount(count, initial = false) {
+      if (!projectCount) return;
+      projectCount.textContent = count;
+      if (initial) return;
+
+      projectCount.classList.remove('updating');
+      void projectCount.offsetWidth;
+      projectCount.classList.add('updating');
+
+      clearTimeout(projectCount._pulseTimer);
+      projectCount._pulseTimer = setTimeout(() => {
+        projectCount.classList.remove('updating');
+      }, 260);
+    }
+
+    function showCard(card, initial = false) {
+      clearTimeout(card._filterTimer);
+      card.classList.remove('filtered-out', 'is-hiding', 'is-hidden');
+
+      if (!initial) {
+        card.classList.remove('is-entering');
+        void card.offsetWidth;
+        card.classList.add('is-entering');
+        card._filterTimer = setTimeout(() => {
+          card.classList.remove('is-entering');
+        }, 460);
+      }
+    }
+
+    function hideCard(card, initial = false) {
+      clearTimeout(card._filterTimer);
+      card.classList.remove('is-entering');
+
+      if (initial) {
+        card.classList.add('filtered-out', 'is-hidden');
+        card.classList.remove('is-hiding');
+        return;
+      }
+
+      card.classList.add('filtered-out', 'is-hiding');
+      card._filterTimer = setTimeout(() => {
+        card.classList.add('is-hidden');
+        card.classList.remove('is-hiding');
+      }, 280);
+    }
+
+    function applyProjectFilter(filter, initial = false) {
+      let visibleCount = 0;
+
+      filterButtons.forEach(button => {
+        const isActive = button.dataset.filter === filter;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      projectCards.forEach(card => {
+        const show = filter === 'all' || card.dataset.cat === filter;
+        if (show) {
+          visibleCount += 1;
+          showCard(card, initial);
+        } else {
+          hideCard(card, initial);
+        }
+      });
+
+      updateCount(visibleCount, initial);
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        applyProjectFilter(button.dataset.filter || 'all');
+      });
+    });
+
+    const initialButton = document.querySelector('.filter-btn.active') || filterButtons[0];
+    applyProjectFilter(initialButton?.dataset.filter || 'all', true);
+  </script>
+</body>
+</html>
