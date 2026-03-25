@@ -286,49 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (document.querySelector('.services-grid')) {
-      window.gsap.from('.service-card', {
-        y: 48,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.services-grid', start: 'top 80%' }
-      });
-    }
-
-    if (document.querySelector('.process-grid')) {
-      window.gsap.from('.process-step', {
-        y: 36,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.75,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.process-grid', start: 'top 80%' }
-      });
-    }
-
-    if (document.querySelector('.projects-grid')) {
-      window.gsap.from('.project-item', {
-        y: 36,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.75,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.projects-grid', start: 'top 82%' }
-      });
-    }
-
-    if (document.querySelector('.projects-masonry')) {
-      window.gsap.from('.proj-card', {
-        y: 36,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.75,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '.projects-masonry', start: 'top 82%' }
-      });
-    }
+    // Las tarjetas de servicios, proceso y proyectos usan el sistema CSS
+    // de IntersectionObserver (.reveal / .reveal.visible) para evitar
+    // conflictos de especificidad entre inline styles de GSAP y el CSS.
   }
 
   function initAnimations() {

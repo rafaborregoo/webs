@@ -55,7 +55,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script>
     document.documentElement.classList.add('js', 'anim-pending');
     window.__nmAnimFallback = window.setTimeout(function () {
@@ -70,6 +70,9 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
+  <!-- Blueprint grid arquitectónico (decorativo) -->
+  <div class="blueprint-bg" aria-hidden="true"></div>
 
   <!-- Cursor personalizado -->
   <div class="cursor">
@@ -294,13 +297,7 @@
       <div class="projects-grid">
         <!-- Proyecto 1 — Grande -->
         <div class="project-item" data-cat="residencial">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#1A3A52 0%,#2F6C9C 50%,#4A8BB5 100%)">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" opacity="0.3">
-              <rect x="10" y="30" width="60" height="40" stroke="white" stroke-width="2"/>
-              <polyline points="5,32 40,10 75,32" stroke="white" stroke-width="2" fill="none"/>
-              <rect x="28" y="45" width="24" height="25" stroke="white" stroke-width="1.5" fill="none"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1000" alt="Villa Mediterránea Marbella" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Residencial</div>
             <div class="project-name">Villa Mediterránea</div>
@@ -310,13 +307,7 @@
 
         <!-- Proyecto 2 -->
         <div class="project-item" data-cat="rehabilitacion">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#245580 0%,#B8965A 100%)">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" opacity="0.3">
-              <rect x="5" y="15" width="50" height="40" stroke="white" stroke-width="1.5"/>
-              <line x1="5" y1="25" x2="55" y2="25" stroke="white" stroke-width="1"/>
-              <rect x="20" y="30" width="20" height="25" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&q=80&w=800" alt="Cortijo Renovado Estepona" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Rehabilitación</div>
             <div class="project-name">Cortijo Renovado</div>
@@ -326,13 +317,7 @@
 
         <!-- Proyecto 3 -->
         <div class="project-item" data-cat="residencial">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#2F6C9C 0%,#1A3A52 100%)">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" opacity="0.3">
-              <circle cx="30" cy="30" r="25" stroke="white" stroke-width="1.5"/>
-              <line x1="5" y1="30" x2="55" y2="30" stroke="white" stroke-width="1"/>
-              <line x1="30" y1="5" x2="30" y2="55" stroke="white" stroke-width="1"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800" alt="Ático Panorámico Puerto Banús" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Residencial</div>
             <div class="project-name">Ático Panorámico</div>
@@ -342,14 +327,7 @@
 
         <!-- Proyecto 4 -->
         <div class="project-item" data-cat="comercial">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#1C1C1C 0%,#2F6C9C 100%)">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
-              <rect x="5" y="10" width="40" height="35" stroke="white" stroke-width="1.5"/>
-              <line x1="5" y1="20" x2="45" y2="20" stroke="white" stroke-width="1"/>
-              <rect x="12" y="25" width="10" height="20" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="28" y="25" width="10" height="20" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Showroom Diseño Marbella" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Comercial</div>
             <div class="project-name">Showroom Diseño</div>
@@ -359,12 +337,7 @@
 
         <!-- Proyecto 5 -->
         <div class="project-item" data-cat="rehabilitacion">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#B8965A 0%,#1A3A52 100%)">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
-              <polygon points="25,5 45,20 45,45 5,45 5,20" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="5" y1="30" x2="45" y2="30" stroke="white" stroke-width="1"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=800" alt="Casa Tradición Benahavís" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Rehabilitación</div>
             <div class="project-name">Casa Tradición</div>
@@ -374,14 +347,7 @@
 
         <!-- Proyecto 6 -->
         <div class="project-item" data-cat="residencial">
-          <div class="project-placeholder" style="background:linear-gradient(135deg,#4A8BB5 0%,#245580 100%)">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" opacity="0.3">
-              <rect x="10" y="10" width="30" height="30" stroke="white" stroke-width="1.5" rx="2"/>
-              <rect x="18" y="18" width="14" height="14" stroke="white" stroke-width="1" fill="none"/>
-              <line x1="10" y1="25" x2="18" y2="25" stroke="white" stroke-width="0.8"/>
-              <line x1="32" y1="25" x2="40" y2="25" stroke="white" stroke-width="0.8"/>
-            </svg>
-          </div>
+          <img class="project-bg" src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=800" alt="Dúplex Moderno Nueva Andalucía" loading="lazy" />
           <div class="project-overlay">
             <div class="project-cat">Residencial</div>
             <div class="project-name">Dúplex Moderno</div>
@@ -404,19 +370,10 @@
     <div class="about-wrap">
       <!-- Imagen lado -->
       <div class="about-img-side reveal-left">
-        <div class="about-img-placeholder" style="background:linear-gradient(160deg,#1A3A52 0%,#2F6C9C 40%,#245580 100%);display:flex;align-items:center;justify-content:center;">
-          <svg width="180" height="220" viewBox="0 0 180 220" fill="none" opacity="0.15">
-            <rect x="10" y="40" width="160" height="170" stroke="white" stroke-width="1.5"/>
-            <ellipse cx="90" cy="40" rx="45" ry="35" stroke="white" stroke-width="1.5" fill="none"/>
-            <line x1="10" y1="100" x2="170" y2="100" stroke="white" stroke-width="0.8"/>
-            <line x1="10" y1="150" x2="170" y2="150" stroke="white" stroke-width="0.8"/>
-            <line x1="70" y1="40" x2="70" y2="210" stroke="white" stroke-width="0.8"/>
-            <line x1="110" y1="40" x2="110" y2="210" stroke="white" stroke-width="0.8"/>
-          </svg>
-        </div>
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=900" alt="Nuria Marcilla, arquitecta en Marbella" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" loading="lazy" />
         <div class="about-img-badge">
-          <strong>+15</strong>
-          <span>años creando<br>espacios únicos</span>
+          <strong>+20</strong>
+          <span>años en la<br>Costa del Sol</span>
         </div>
       </div>
 

@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://nmarcillaarquitecta.com/proyectos/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script>
     document.documentElement.classList.add('js', 'anim-pending');
     window.__nmAnimFallback = window.setTimeout(function () {
@@ -152,6 +152,18 @@
     .proj-visual svg { opacity: 0.28; }
     .proj-card:nth-child(3n+1) .proj-visual { min-height: 560px; }
     .proj-card:hover .proj-visual { transform: scale(1.06); }
+    /* Imagen real dentro del visual */
+    .proj-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .proj-card:hover .proj-visual img { transform: scale(1.06); }
+    .proj-visual { overflow: hidden; }
     .proj-info {
       position: absolute;
       inset: 0;
@@ -337,6 +349,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Blueprint grid arquitectónico (decorativo) -->
+  <div class="blueprint-bg" aria-hidden="true"></div>
   <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
   <div id="scroll-progress"></div>
 
@@ -357,7 +372,7 @@
     <a href="contacto.html">Contactar</a>
   </div>
 
-  <div class="page-hero" style="margin-top:var(--nav-h)">
+  <div class="page-hero" style="margin-top:var(--nav-h);background-image:linear-gradient(135deg,rgba(26,58,82,0.85) 0%,rgba(47,108,156,0.70) 100%),url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=1600');background-size:cover;background-position:center;">
     <div class="page-hero-copy">
       <div class="breadcrumb"><a href="index.html">Inicio</a> · Proyectos</div>
       <h1 class="page-hero-title">Portfolio de <em>Proyectos</em></h1>
@@ -391,15 +406,7 @@
              data-name="Villa Mediterránea" data-loc="Marbella Golden Mile, 2024"
              data-area="380 m²" data-dur="14 meses"
              data-desc="Villa de nueva planta con 5 dormitorios, piscina infinita y vistas al Mediterráneo. Combinación de hormigón visto con madera de iroko y grandes ventanales.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#1A3A52 0%,#2F6C9C 50%,#4A8BB5 100%)">
-            <svg width="80" height="100" viewBox="0 0 80 100" fill="none" opacity="0.18">
-              <polygon points="40,5 75,25 75,90 5,90 5,25" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="5" y1="50" x2="75" y2="50" stroke="white" stroke-width="0.8"/>
-              <rect x="25" y="60" width="30" height="30" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="10" y="55" width="12" height="12" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="58" y="55" width="12" height="12" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Residencial</div>
             <div class="proj-name">Villa Mediterránea</div>
@@ -419,15 +426,7 @@
              data-name="Cortijo Renovado" data-loc="Estepona, 2023"
              data-area="220 m²" data-dur="8 meses"
              data-desc="Rehabilitación integral de cortijo andaluz del siglo XIX. Respeto total por la volumetría original con modernización completa del interior y eficiencia energética clase A.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#B8965A 0%,#245580 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="8" y="20" width="54" height="42" stroke="white" stroke-width="1.5" fill="none"/>
-              <path d="M8 32 Q35 18 62 32" stroke="white" stroke-width="1.5" fill="none"/>
-              <rect x="22" y="38" width="26" height="24" stroke="white" stroke-width="1" fill="none"/>
-              <line x1="35" y1="38" x2="35" y2="62" stroke="white" stroke-width="0.8"/>
-              <circle cx="14" cy="16" r="8" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Rehabilitación</div>
             <div class="proj-name">Cortijo Renovado</div>
@@ -447,15 +446,7 @@
              data-name="Ático Panorámico" data-loc="Puerto Banús, 2023"
              data-area="180 m²" data-dur="6 meses"
              data-desc="Reforma integral de ático en primera línea de playa. Apertura de espacios diáfanos, terraza espectacular con vistas de 270° al puerto y al Mediterráneo.">
-          <div class="proj-visual" style="background:linear-gradient(160deg,#2F6C9C 0%,#1A3A52 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="10" y="10" width="50" height="50" stroke="white" stroke-width="1.5" fill="none" rx="2"/>
-              <line x1="10" y1="30" x2="60" y2="30" stroke="white" stroke-width="0.8"/>
-              <line x1="35" y1="10" x2="35" y2="60" stroke="white" stroke-width="0.8"/>
-              <circle cx="35" cy="20" r="6" stroke="white" stroke-width="1.5" fill="none"/>
-              <path d="M10 60 Q35 45 60 60" stroke="white" stroke-width="1.2" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Residencial</div>
             <div class="proj-name">Ático Panorámico</div>
@@ -475,15 +466,7 @@
              data-name="Showroom de Diseño" data-loc="Marbella, 2022"
              data-area="340 m²" data-dur="5 meses"
              data-desc="Local comercial premium para showroom de interiorismo. Doble altura, iluminación escénica y expositor con módulos desmontables. Premio al mejor diseño comercial Málaga 2023.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#1C1C1C 0%,#2F6C9C 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="5" y="15" width="60" height="50" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="5" y1="30" x2="65" y2="30" stroke="white" stroke-width="1"/>
-              <rect x="15" y="38" width="14" height="27" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="41" y="38" width="14" height="27" stroke="white" stroke-width="1" fill="none"/>
-              <path d="M5 15 L35 5 L65 15" stroke="white" stroke-width="1.2" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Comercial</div>
             <div class="proj-name">Showroom de Diseño</div>
@@ -503,14 +486,7 @@
              data-name="Casa Tradición" data-loc="Benahavís, 2022"
              data-area="290 m²" data-dur="10 meses"
              data-desc="Rehabilitación de vivienda tradicional andaluza integrando tecnología domótica y materiales de última generación sin perder el carácter original de la construcción.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#B8965A 20%,#1A3A52 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <polygon points="35,8 62,25 62,62 8,62 8,25" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="8" y1="42" x2="62" y2="42" stroke="white" stroke-width="0.8"/>
-              <rect x="22" y="44" width="26" height="18" stroke="white" stroke-width="1" fill="none"/>
-              <circle cx="35" cy="33" r="6" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Rehabilitación</div>
             <div class="proj-name">Casa Tradición</div>
@@ -530,14 +506,7 @@
              data-name="Dúplex Moderno" data-loc="Nueva Andalucía, 2021"
              data-area="145 m²" data-dur="4 meses"
              data-desc="Reforma de dúplex en urbanización de golf. Apertura completa de planta baja, cocina integrada en salón y terraza superior privada con vistas al campo de golf.">
-          <div class="proj-visual" style="background:linear-gradient(160deg,#4A8BB5 0%,#245580 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="12" y="10" width="46" height="22" stroke="white" stroke-width="1.5" fill="none"/>
-              <rect x="12" y="38" width="46" height="22" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="12" y1="32" x2="58" y2="32" stroke="white" stroke-width="2"/>
-              <line x1="35" y1="10" x2="35" y2="60" stroke="white" stroke-width="0.8"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Residencial</div>
             <div class="proj-name">Dúplex Moderno</div>
@@ -557,15 +526,7 @@
              data-name="Villa Minimalista" data-loc="Sierra Blanca, 2021"
              data-area="520 m²" data-dur="18 meses"
              data-desc="Villa de lujo en Sierra Blanca con 6 dormitorios en suite, spa privado, cine y bodega. Arquitectura minimalista con materiales de máxima calidad.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#1A3A52 0%,#4A8BB5 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="5" y="20" width="60" height="45" stroke="white" stroke-width="1.5" fill="none"/>
-              <rect x="5" y="5" width="60" height="18" stroke="white" stroke-width="1" fill="none"/>
-              <line x1="5" y1="40" x2="65" y2="40" stroke="white" stroke-width="0.8"/>
-              <rect x="20" y="47" width="12" height="18" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="38" y="47" width="12" height="18" stroke="white" stroke-width="1" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Residencial</div>
             <div class="proj-name">Villa Minimalista</div>
@@ -585,16 +546,7 @@
              data-name="Oficinas Premium" data-loc="Marbella Centro, 2020"
              data-area="200 m²" data-dur="3 meses"
              data-desc="Diseño de oficinas para consultoría de inversión inmobiliaria. Ambiente elegante y confidencial con salas de reuniones privadas y recepción de alta representación.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#2F6C9C 0%,#1C1C1C 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <rect x="8" y="12" width="54" height="48" stroke="white" stroke-width="1.5" fill="none" rx="2"/>
-              <line x1="8" y1="26" x2="62" y2="26" stroke="white" stroke-width="1"/>
-              <rect x="15" y="34" width="15" height="10" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="38" y="34" width="15" height="10" stroke="white" stroke-width="1" fill="none"/>
-              <rect x="15" y="50" width="15" height="6" stroke="white" stroke-width="0.8" fill="none"/>
-              <rect x="38" y="50" width="15" height="6" stroke="white" stroke-width="0.8" fill="none"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1524758631624-e2822132304d?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Comercial</div>
             <div class="proj-name">Oficinas Premium</div>
@@ -614,14 +566,7 @@
              data-name="Loft Industrial" data-loc="Málaga Capital, 2020"
              data-area="110 m²" data-dur="3 meses"
              data-desc="Transformación de nave industrial de principios del siglo XX en loft de diseño. Conservación de estructura de hierro original integrada en el nuevo diseño.">
-          <div class="proj-visual" style="background:linear-gradient(135deg,#245580 0%,#B8965A 100%)">
-            <svg width="70" height="70" viewBox="0 0 70 70" fill="none" opacity="0.2">
-              <path d="M5 35 L35 10 L65 35 L65 65 L5 65 Z" stroke="white" stroke-width="1.5" fill="none"/>
-              <line x1="5" y1="50" x2="65" y2="50" stroke="white" stroke-width="0.8"/>
-              <rect x="20" y="52" width="30" height="13" stroke="white" stroke-width="1" fill="none"/>
-              <line x1="35" y1="35" x2="35" y2="52" stroke="white" stroke-width="0.8"/>
-            </svg>
-          </div>
+          <div class="proj-visual"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&q=80&w=900" alt="Proyecto arquitectónico Marbella" loading="lazy" /></div>
           <div class="proj-label">
             <div class="proj-cat-tag">Rehabilitación</div>
             <div class="proj-name">Loft Industrial</div>

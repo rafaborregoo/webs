@@ -59,7 +59,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <script>
     document.documentElement.classList.add('js', 'anim-pending');
     window.__nmAnimFallback = window.setTimeout(function () {
@@ -117,6 +117,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Blueprint grid arquitectónico (decorativo) -->
+  <div class="blueprint-bg" aria-hidden="true"></div>
   <div class="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
   <div id="scroll-progress"></div>
 
@@ -137,7 +140,7 @@
     <a href="contacto.html">Contactar</a>
   </div>
 
-  <div class="page-hero" style="margin-top:var(--nav-h)">
+  <div class="page-hero" style="margin-top:var(--nav-h);background-image:linear-gradient(135deg,rgba(26,58,82,0.85) 0%,rgba(47,108,156,0.70) 100%),url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1600');background-size:cover;background-position:center;">
     <div class="page-hero-copy">
       <div class="breadcrumb"><a href="index.html">Inicio</a> · Servicios</div>
       <h1 class="page-hero-title">Nuestros <em>Servicios</em></h1>
